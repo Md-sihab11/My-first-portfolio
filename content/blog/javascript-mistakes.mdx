@@ -1,0 +1,81 @@
+---
+title: "5 JavaScript Mistakes Every Beginner Makes (And How to Avoid Them)"
+summary: "From type coercion subtleties to mutating state directly, explore foundational JavaScript patterns that level up your code quality."
+publishedAt: "2026-03-20"
+readTime: "6 min read"
+tags: ["JavaScript", "Web Development", "Best Practices"]
+featured: true
+---
+
+# 5 JavaScript Mistakes Every Beginner Makes
+
+JavaScript is flexible and accessible, which makes it easy to write working code quickly—and equally easy to introduce subtle bugs that surface unexpectedly later.
+
+## 1. Confusing `==` and `===`
+
+Loose equality (`==`) coerces types behind the scenes:
+
+```js
+console.log("0" == false); // true
+console.log("" == false);  // true
+console.log(null == undefined); // true
+```
+
+Always default to strict equality (`===`) and strict inequality (`!==`) to ensure explicit, bug-free comparisons.
+
+## 2. Mutating Objects and Arrays Directly
+
+In JavaScript, objects and arrays are reference types. Modifying them in-place can produce tricky side-effects, especially when working with React state.
+
+```js
+// ❌ Dangerous direct mutation
+const original = [1, 2, 3];
+const copy = original;
+copy.push(4); // Alters both original and copy!
+
+// ✅ Safe immutability with spread or toSorted/toSpliced
+const safeCopy = [...original, 4];
+```
+
+## 3. Not Handling Asynchronous Errors with `try/catch`
+
+Uncaught promises can crash your Node backend or leave frontend UI spinners stuck indefinitely.
+
+```js
+// ✅ Wrap async operations with meaningful error handling
+async function fetchMarketData(productId) {
+  try {
+    const res = await fetch(`/api/products/${productId}`);
+    if (!res.ok) {
+      throw new Error(`Server returned ${res.status}`);
+    }
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to retrieve market data:", error);
+    return null;
+  }
+}
+```
+
+## 4. Misunderstanding Scope and Hoisting
+
+Variables declared with `var` are function-scoped and hoisted, leading to leaked globals and unintended overwrites. Use `const` by default and `let` only when reassigning is explicitly necessary.
+
+## 5. Forgetting that Arrays are Non-Primitive Truthy Values
+
+In JavaScript, `[]` is truthy:
+
+```js
+if ([]) {
+  // This executes! An empty array is truthy.
+}
+
+// Check length instead:
+if (items.length > 0) {
+  // Confirmed to have items
+}
+```
+
+## Summary
+
+Writing resilient JavaScript comes from developing an instinct for immutability, rigorous type checking, and robust async handling.

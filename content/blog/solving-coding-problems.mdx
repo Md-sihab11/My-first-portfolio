@@ -1,0 +1,49 @@
+---
+title: "A Systematic Approach to Solving Coding Problems"
+summary: "How to deconstruct complex algorithmic challenges and real-world feature requests into approachable, testable steps."
+publishedAt: "2026-03-28"
+readTime: "4 min read"
+tags: ["DSA", "Problem Solving", "Learning"]
+featured: false
+---
+
+# A Systematic Approach to Solving Coding Problems
+
+When staring at an algorithmic problem or a complex application feature, the biggest trap is jumping straight into typing code without a clear roadmap.
+
+## Step 1: Clarify the Problem and Constraints
+
+Before writing anything:
+- What are the inputs and outputs?
+- What are the edge cases? (Empty arrays, negative numbers, null values)
+- What is the expected time and space complexity?
+
+## Step 2: Work Through an Example by Hand
+
+Pick a non-trivial test case and write down each intermediate state on paper or in comments. This surfaces the underlying pattern before you touch syntax.
+
+```
+Input: [2, 7, 11, 15], Target: 9
+Step 1: Check 2 -> Need 7 (Store 2 in map)
+Step 2: Check 7 -> 7 is found in map! Match found: indices 0 and 1.
+```
+
+## Step 3: Write Pseudocode
+
+Draft the logical flow without worrying about exact syntax:
+1. Initialize frequency counter / hash map.
+2. Iterate through input elements.
+3. Compare against running conditions.
+4. Return computed result.
+
+## Step 4: Implement and Test Incrementally
+
+Translate each step into clean, readable code. Run test cases early rather than writing hundreds of lines at once.
+
+## Step 5: Refactor and Analyze
+
+Once it passes, analyze bottlenecks:
+- Can $O(n^2)$ nested loops be optimized to $O(n)$ with a hash map?
+- Is memory consumption minimal?
+
+Consistency in this framework builds genuine confidence across any programming language.

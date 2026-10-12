@@ -1,0 +1,88 @@
+---
+title: "Debugging Common React Errors: Hydration, Loops, and Closures"
+summary: "A practical guide to identifying and resolving the most frequent React runtime issues in modern Next.js applications."
+publishedAt: "2026-03-15"
+readTime: "5 min read"
+tags: ["React", "Next.js", "Debugging", "JavaScript"]
+featured: true
+---
+
+# Debugging Common React Errors
+
+As a full-stack developer working with modern React and Next.js App Router, error boundaries and console warnings quickly become your daily companion. Rather than feeling intimidated, understanding the core reasons behind these errors saves hours of trial and error.
+
+## 1. Hydration Mismatches
+
+A hydration mismatch occurs when the server-rendered HTML does not match the initial client-side render tree.
+
+### Common Triggers:
+- Rendering browser-only globals (`window`, `localStorage`, `navigator`) during initial render.
+- Rendering dates or timestamps using `new Date().toLocaleString()` without formatting synchronization.
+- Invalid HTML nesting (e.g., nesting a `<div>` inside a `<p>`).
+
+```tsx
+// ❌ Problematic code
+export default function UserGreeting() {
+  const isOnline = typeof window !== "undefined" && navigator.onLine;
+  return <span>Status: {isOnline ? "Online" : "Offline"}</span>;
+}
+
+// ✅ Resilient solution with useEffect or client wrapper
+"use client";
+import { useState, useEffect } from "react";
+
+export default function UserGreeting() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <span>Status: Loading...</span>;
+  }
+
+  return <span>Status: {navigator.onLine ? "Online" : "Offline"}</span>;
+}
+```
+
+## 2. Infinite Re-Render Loops
+
+An infinite loop occurs when state updater functions are invoked unconditionally during rendering.
+
+```tsx
+// ❌ Error: Maximum update depth exceeded
+function Counter() {
+  const [count, setCount] = useState(0);
+  setCount(count + 1); // Invoked on every render!
+  return <div>{count}</div>;
+}
+```
+
+Always ensure state updates happen inside event handlers (`onClick`, `onSubmit`) or inside `useEffect` with appropriate dependency arrays.
+
+## 3. Stale Closures in Hooks
+
+When a closure inside `useEffect` or `useCallback` captures an earlier state value without including it in the dependency array, it causes stale state bugs.
+
+```tsx
+// ❌ May skip updates if count isn't tracked
+useEffect(() => {
+  const id = setInterval(() => {
+    setCount(count + 1); // Stale reference
+  }, 1000);
+  return () => clearInterval(id);
+}, []);
+
+// ✅ Use functional updates
+useEffect(() => {
+  const id = setInterval(() => {
+    setCount((prev) => prev + 1);
+  }, 1000);
+  return () => clearInterval(id);
+}, []);
+```
+
+## Takeaway
+
+Debugging in React is about respecting the component lifecycle and pure functional principles. Keep components predictable, isolate side-effects cleanly, and inspect the browser console with intention.

@@ -1,0 +1,63 @@
+---
+title: "Understanding API Errors: HTTP Status Codes and Resilient Error Responses"
+summary: "A deep dive into REST API error architectures, status code semantics, and creating user-friendly client feedback."
+publishedAt: "2026-04-05"
+readTime: "5 min read"
+tags: ["Backend", "API", "Next.js", "Full-Stack"]
+featured: false
+---
+
+# Understanding API Errors
+
+Building full-stack web applications requires mastering communication between client and server. When an API call fails, returning clear, actionable status codes is vital for developer sanity and user experience.
+
+## HTTP Status Code Categories
+
+| Category | Range | Meaning |
+|---|---|---|
+| **2xx** | `200 - 299` | Success (e.g. `200 OK`, `201 Created`) |
+| **3xx** | `300 - 399` | Redirection (e.g. `301 Moved Permanently`, `304 Not Modified`) |
+| **4xx** | `400 - 499` | Client Errors (e.g. `400 Bad Request`, `401 Unauthorized`, `404 Not Found`) |
+| **5xx** | `500 - 599` | Server Errors (e.g. `500 Internal Server Error`, `503 Service Unavailable`) |
+
+## Common Client Errors Explained
+
+### `400 Bad Request`
+The payload failed validation. Always return a detailed field-level error object so the client can highlight specific form inputs.
+
+### `401 Unauthorized` vs `403 Forbidden`
+- **401 Unauthorized**: The user is unauthenticated (missing or expired session cookie / token).
+- **403 Forbidden**: The user is authenticated, but their role or permissions do not allow this action.
+
+### `404 Not Found`
+The requested resource does not exist. Avoid exposing whether an entity exists if doing so presents a security risk (e.g., user email enumeration).
+
+## Structuring a Predictable API Response in Next.js Route Handlers
+
+```ts
+// src/app/api/contact/route.ts
+import { NextResponse } from "next/server";
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+
+    if (!body.email || !body.message) {
+      return NextResponse.json(
+        { success: false, error: "Email and message are required fields." },
+        { status: 400 }
+      );
+    }
+
+    // Process notification...
+    return NextResponse.json({ success: true, message: "Message dispatched." });
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, error: "Internal server error occurred." },
+      { status: 500 }
+    );
+  }
+}
+```
+
+Standardizing response envelopes makes frontend error handling uniform and predictable.
