@@ -6,7 +6,6 @@ import { GithubIcon } from "@/components/ui/Icons";
 import { Project } from "@/types/project";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;
@@ -22,10 +21,10 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
       <article className="group relative rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-300 hover:border-accent/40 hover:shadow-glow">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
           {/* Screenshot Container */}
-          <div className="lg:col-span-7 relative bg-surface-muted overflow-hidden min-h-[320px] sm:min-h-[400px] border-b lg:border-b-0 lg:border-r border-border">
+          <div className="lg:col-span-7 relative bg-surface-muted/60 overflow-hidden min-h-[320px] sm:min-h-[420px] border-b lg:border-b-0 lg:border-r border-border flex items-center justify-center p-4 sm:p-6">
             <Link
               href={`/projects/${project.slug}`}
-              className="block relative w-full h-full min-h-[320px] sm:min-h-[400px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="block relative w-full h-full min-h-[280px] sm:min-h-[360px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-xl overflow-hidden shadow-md group-hover:shadow-xl transition-all"
               tabIndex={-1}
               aria-hidden="true"
             >
@@ -37,7 +36,7 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent lg:hidden" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent lg:hidden" />
             </Link>
             <div className="absolute top-4 left-4 z-10 flex gap-2">
               <Badge variant="accent">{project.category}</Badge>
@@ -66,7 +65,7 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 {project.description}
               </p>
 
-              {/* Problem / Use Case */}
+              {/* Problem / Impact */}
               <div className="p-3.5 rounded-xl bg-surface-muted border border-border/80">
                 <span className="text-xs font-mono uppercase tracking-wider text-primary font-semibold block mb-1">
                   Problem & Impact
@@ -135,10 +134,10 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
   return (
     <article className="group relative flex flex-col rounded-xl border border-border bg-surface overflow-hidden transition-all duration-300 hover:border-accent/40 hover:shadow-glow">
       {/* Screenshot Preview */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-muted border-b border-border">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-muted/60 border-b border-border p-3">
         <Link
           href={`/projects/${project.slug}`}
-          className="block w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="block relative w-full h-full rounded-lg overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           tabIndex={-1}
           aria-hidden="true"
         >
@@ -150,7 +149,7 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
             className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </Link>
-        <div className="absolute top-3 left-3 z-10">
+        <div className="absolute top-4 left-4 z-10">
           <Badge variant="accent">{project.category}</Badge>
         </div>
       </div>
