@@ -15,7 +15,10 @@ export interface EducationItem {
   degree: string;
   institution: string;
   period: string;
+  board?: string;
+  group?: string;
+  gpa?: string;
   description?: string;
-  order: number;
-  visible: boolean;
+  order?: number;
+  visible?: boolean;
 }

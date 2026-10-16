@@ -8,9 +8,10 @@ import { EmptyState } from "@/components/ui/EmptyState";
 
 interface BlogListProps {
   posts: BlogPost[];
+  basePath?: string;
 }
 
-export function BlogList({ posts }: BlogListProps) {
+export function BlogList({ posts, basePath = "/articles" }: BlogListProps) {
   const [query, setQuery] = useState("");
 
   const filtered = posts.filter((p) => {
@@ -36,7 +37,7 @@ export function BlogList({ posts }: BlogListProps) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {filtered.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <BlogCard key={post.slug} post={post} basePath={basePath} />
           ))}
         </div>
       )}

@@ -20,7 +20,7 @@ export function Skills() {
   };
 
   return (
-    <section className="py-20 border-t border-border/60">
+    <section id="skills" className="py-20 border-t border-border/60">
       <Container size="lg">
         <SectionHeading
           eyebrow="Capabilities & Tools"

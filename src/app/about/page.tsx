@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { ArrowRight, Code, Heart, Sparkles, Terminal } from "lucide-react";
+import { ArrowRight, BookOpen, Code, Compass, Heart, Sparkles, Terminal } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Skills } from "@/components/home/Skills";
+import { Education } from "@/components/home/Education";
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -149,12 +150,38 @@ export default function AboutPage() {
                   <span>Download Resume</span>
                 </Button>
               </div>
+
+
             </div>
           </div>
         </div>
       </Container>
+      <Education />
+
+
 
       <Skills />
+      {/* Extra Action Buttons Placed Directly After Skills & Technologies Section */}
+      <Container size="lg">
+        <div className="pt-6 pb-10 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-6 bg-surface/40 p-6 sm:p-8 rounded-2xl border border-border">
+          <div className="space-y-1 text-center sm:text-left">
+            <h3 className="text-lg font-bold text-primary">Want to explore more?</h3>
+            <p className="text-xs sm:text-sm text-secondary">
+              Check out my technical articles and curated development resources.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button href="/articles" variant="outline" size="md">
+              <BookOpen className="w-4 h-4" />
+              <span>Read Articles</span>
+            </Button>
+            <Button href="/resources" variant="outline" size="md">
+              <Compass className="w-4 h-4" />
+              <span>View Resources</span>
+            </Button>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

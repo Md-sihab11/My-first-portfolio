@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, ArrowUpRight } from "lucide-react";
+import { SiCodeforces, SiLeetcode } from "react-icons/si";
 import { SocialLink } from "@/types/social";
 import { cn } from "@/lib/utils";
 
@@ -103,6 +104,10 @@ export function getSocialIcon(platform: SocialLink["platform"], className = "w-5
           <polygon points="10 15 15 12 10 9 10 15" />
         </svg>
       );
+    case "Codeforces":
+      return <SiCodeforces className={className} aria-hidden="true" />;
+    case "LeetCode":
+      return <SiLeetcode className={className} aria-hidden="true" />;
     case "Email":
     default:
       return <Mail className={className} aria-hidden="true" />;

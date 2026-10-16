@@ -7,6 +7,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   size?: "sm" | "md" | "lg";
   href?: string;
   isExternal?: boolean;
+  download?: string;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -17,6 +18,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size = "md",
       href,
       isExternal,
+      download,
       children,
       disabled,
       ...props
@@ -53,6 +55,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     if (href) {
+      if (download) {
+        return (
+          <a
+            href={href}
+            download={download}
+            className={combinedStyles}
+          >
+            {children}
+          </a>
+        );
+      }
       if (isExternal) {
         return (
           <a

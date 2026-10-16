@@ -33,11 +33,11 @@ export function Hero() {
             {/* Editorial Headline */}
             <div className="space-y-4">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary leading-[1.08]">
-                Building for the web. <br />
+                I&apos;m a {" "}
                 <span className="text-accent underline decoration-accent/30 decoration-wavy decoration-from-font">
-                  Growing through
-                </span>{" "}
-                every project.
+                  MERN Stack
+                </span>{" "} <br />
+                Developer
               </h1>
               <p className="text-lg sm:text-xl text-secondary max-w-2xl leading-relaxed pt-2">
                 Hi, I&apos;m {siteConfig.fullName}. {siteConfig.intro}
@@ -62,15 +62,15 @@ export function Hero() {
               </Button>
             </div>
 
-            {/* Mobile Socials Row */}
-            <div className="flex sm:hidden items-center gap-2 pt-2">
-              <span className="text-xs font-mono text-secondary-muted mr-1">Connect:</span>
+            {/* Verified Profiles Row */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-3">
+              <span className="text-xs font-mono text-secondary mr-1">Profiles:</span>
               {verifiedSocials.map((link) => (
                 <SocialCard
                   key={link.platform}
                   link={link}
                   variant="icon-only"
-                  className="min-w-[44px] min-h-[44px]"
+                  className="min-w-[42px] min-h-[42px]"
                 />
               ))}
             </div>
@@ -135,7 +135,7 @@ export function Hero() {
 
               {/* Developer Label */}
               <p className="mt-10 text-center font-mono text-xs font-medium text-accent">
-                MERN Full Stack Developer
+                MERN Stack Developer
               </p>
             </div>
           </div>

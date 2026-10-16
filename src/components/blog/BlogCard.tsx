@@ -8,9 +8,10 @@ import { formatDate } from "@/lib/utils";
 interface BlogCardProps {
   post: BlogPost;
   featured?: boolean;
+  basePath?: string;
 }
 
-export function BlogCard({ post, featured = false }: BlogCardProps) {
+export function BlogCard({ post, featured = false, basePath = "/articles" }: BlogCardProps) {
   return (
     <article className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-border bg-surface hover:border-accent/40 hover:bg-surface-elevated transition-all duration-300">
       <div className="space-y-4">
@@ -27,7 +28,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
 
         <div>
           <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary group-hover:text-accent transition-colors">
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            <Link href={`${basePath}/${post.slug}`}>{post.title}</Link>
           </h3>
           <p className="mt-3 text-sm text-secondary leading-relaxed line-clamp-3">
             {post.summary}
@@ -45,7 +46,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
 
       <div className="mt-6 pt-5 border-t border-border flex items-center justify-between">
         <Link
-          href={`/blog/${post.slug}`}
+          href={`${basePath}/${post.slug}`}
           className="text-xs font-semibold text-accent group-hover:underline inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
           <span>Read Article</span>

@@ -3,6 +3,7 @@ import { Hero } from "@/components/home/Hero";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { AboutPreview } from "@/components/home/AboutPreview";
 import { Skills } from "@/components/home/Skills";
+import { Education } from "@/components/home/Education";
 import { LatestPosts } from "@/components/home/LatestPosts";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <FeaturedProjects />
       <AboutPreview />
       <Skills />
+      <Education />
       <LatestPosts posts={posts} />
       <ContactCTA />
     </div>

@@ -13,21 +13,6 @@ export const socialLinks: SocialLink[] = [
     featured: true,
   },
   {
-    platform: "Email",
-    label: "Send an email to Shakib",
-    url: "mailto:mdsihabsharar22@gmail.com",
-    username: "mdsihabsharar22@gmail.com",
-    featured: true,
-  },
-  // Future verified links can be added here once provided:
-  {
-    platform: "LinkedIn",
-    label: "Connect with Shakib on LinkedIn",
-    url: "https://linkedin.com/in/...",
-    username: "...",
-    featured: true,
-  },
-  {
     platform: "LeetCode",
     label: "Connect with Shakib on LeetCode",
     url: "https://leetcode.com/u/mdshihab1122/",
@@ -41,9 +26,24 @@ export const socialLinks: SocialLink[] = [
     username: "shihab1122",
     featured: true,
   },
-
+  {
+    platform: "LinkedIn",
+    label: "Connect with Shakib on LinkedIn",
+    url: "https://linkedin.com/in/md-sihab11",
+    username: "md-sihab11",
+    featured: true,
+  },
+  {
+    platform: "Email",
+    label: "Send an email to Shakib",
+    url: "mailto:mdsihabsharar22@gmail.com",
+    username: "mdsihabsharar22@gmail.com",
+    featured: true,
+  },
 ];
 
 export const getVerifiedSocialLinks = (): SocialLink[] => {
-  return socialLinks.filter((link) => Boolean(link.url && link.url.trim().length > 0));
+  return socialLinks.filter(
+    (link) => Boolean(link.url && link.url.trim().length > 0 && !link.url.includes("..."))
+  );
 };
