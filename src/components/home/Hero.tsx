@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail, Sparkles, Terminal } from "lucide-react";
+import { ArrowRight, Mail, Sparkles, Terminal, Download } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getVerifiedSocialLinks } from "@/data/social-links";
 import { SocialCard } from "@/components/social/SocialCard";
@@ -31,7 +31,7 @@ export function Hero() {
 
             {/* Editorial Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-primary leading-[1.08]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary leading-[1.08]">
                 Building for the web. <br />
                 <span className="text-accent underline decoration-accent/30 decoration-wavy decoration-from-font">
                   Growing through
@@ -39,7 +39,7 @@ export function Hero() {
                 every project.
               </h1>
               <p className="text-lg sm:text-xl text-secondary max-w-2xl leading-relaxed pt-2">
-                Hi, I&apos;m <strong className="text-primary font-semibold">{siteConfig.name}</strong> ({siteConfig.fullName}). {siteConfig.intro}
+                Hi, I&apos;m {siteConfig.fullName}. {siteConfig.intro}
               </p>
             </div>
 
@@ -49,12 +49,18 @@ export function Hero() {
                 Explore Projects
                 <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button href="/contact" variant="secondary" size="lg">
-                <Mail className="w-4 h-4" />
-                Contact Me
+
+              <Button
+                href={siteConfig.resumeUrl}
+                variant="secondary"
+                size="lg"
+                download={siteConfig.resumeUrl}
+              >
+                <Download className="w-4 h-4" />
+                Download CV
               </Button>
 
-              <div className="hidden sm:flex items-center gap-2 pl-2">
+              {/* <div className="hidden sm:flex items-center gap-2 pl-2">
                 {verifiedSocials.map((link) => (
                   <SocialCard
                     key={link.platform}
@@ -63,7 +69,7 @@ export function Hero() {
                     className="min-w-[44px] min-h-[44px]"
                   />
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* Mobile Socials Row */}
@@ -80,39 +86,72 @@ export function Hero() {
             </div>
           </div>
 
+
           {/* Side Editorial Profile Card */}
           <div className="lg:col-span-4">
-            <div className="relative rounded-2xl border border-border bg-surface p-6 shadow-glow transition-all hover:border-accent/40">
-              <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-surface-muted mb-5 border border-border">
-                <Image
-                  src="/images/profile/profile.png"
-                  alt={`Portrait of ${siteConfig.name}`}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 30vw"
-                  className="object-cover"
-                />
+            <div className="relative w-full max-w-[400px] mx-auto px-2 py-4">
+              <div className="relative w-full aspect-square">
+
+                {/* Circular Orbit Ring */}
+                <div className="absolute inset-[7%] rounded-full border border-accent/20" />
+
+                {/* Animated Tech Stack */}
+                {[
+                  { name: "React", icon: "⚛", color: "#61DAFB" },
+                  { name: "Next.js", icon: "N", color: "currentColor" },
+                  { name: "Node.js", icon: "JS", color: "#5FA04E" },
+                  { name: "Express", icon: "Ex", color: "currentColor" },
+                  { name: "MongoDB", icon: "M", color: "#47A248" },
+                  { name: "JavaScript", icon: "JS", color: "#F7DF1E" },
+                  { name: "Tailwind", icon: "≈", color: "#06B6D4" },
+                  { name: "Git", icon: "⑂", color: "#F05032" },
+                ].map((tech, index, arr) => {
+                  const angle = (index * 360) / arr.length;
+
+                  return (
+                    <div
+                      key={tech.name}
+                      title={tech.name}
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        transform: `rotate(${angle}deg)`,
+                      }}
+                    >
+                      <div className="absolute left-1/2 top-[3%] -translate-x-1/2 -translate-y-1/2">
+                        <div
+                          className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-border bg-surface shadow-glow animate-tech-float transition-transform duration-300 hover:scale-110"
+                          style={{
+                            color: tech.color,
+                            animationDelay: `${index * -0.25}s`,
+                            transform: `rotate(${-angle}deg)`,
+                          }}
+                        >
+                          <span className="text-sm font-bold sm:text-base">
+                            {tech.icon}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* Bigger Center Profile Picture */}
+                <div className="absolute left-1/2 top-1/2 h-[74%] w-[74%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-accent/80 bg-surface-muted shadow-glow">
+                  <Image
+                    src="/images/profile/sh.png"
+                    alt="Picture of Md Sihab Sharar"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 62vw, 248px"
+                    className="object-cover object-center"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-3 font-mono text-xs">
-                <div className="flex items-center justify-between pb-2 border-b border-border">
-                  <span className="text-secondary-muted">Location:</span>
-                  <span className="text-primary font-medium">{siteConfig.location}</span>
-                </div>
-                <div className="flex items-center justify-between pb-2 border-b border-border">
-                  <span className="text-secondary-muted">Stack:</span>
-                  <span className="text-accent font-medium">Next.js • React • TS</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-secondary-muted">Featured:</span>
-                  <Link
-                    href="/projects/bazar-dor"
-                    className="text-primary hover:text-accent font-medium underline underline-offset-4"
-                  >
-                    Bazar Dor
-                  </Link>
-                </div>
-              </div>
+              {/* Developer Label */}
+              <p className="mt-10 text-center font-mono text-xs font-medium text-accent">
+                MERN Full Stack Developer
+              </p>
             </div>
           </div>
         </div>
