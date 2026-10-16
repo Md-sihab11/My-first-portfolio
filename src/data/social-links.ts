@@ -29,8 +29,8 @@ export const socialLinks: SocialLink[] = [
   {
     platform: "LinkedIn",
     label: "Connect with Shakib on LinkedIn",
-    url: "https://linkedin.com/in/md-sihab11",
-    username: "md-sihab11",
+    url: "https://www.linkedin.com/in/mdsihab-sharar/",
+    username: "mdsihab-sharar",
     featured: true,
   },
   {

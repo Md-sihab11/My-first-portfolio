@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 
-// Trigger config reload for updated theme variables
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
@@ -18,6 +17,9 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
   },
 };
 
