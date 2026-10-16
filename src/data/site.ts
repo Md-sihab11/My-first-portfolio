@@ -56,8 +56,8 @@ export const siteConfig = {
     {
       id: "hsc",
       degree: "Higher Secondary Certificate (HSC)",
-      institution: "Dhaka College",
-      board: "Dhaka Education Board",
+      institution: "Comilla Residential School & College",
+      board: "Cumilla Education Board",
       period: "2021 – 2022",
       group: "Science",
       gpa: "4.83 / 5.00",
@@ -67,7 +67,7 @@ export const siteConfig = {
     {
       id: "ssc",
       degree: "Secondary School Certificate (SSC)",
-      institution: "Motijheel Model School & College",
+      institution: "Comilla Residential School & College",
       board: "Dhaka Education Board",
       period: "2019 – 2021",
       group: "Science",

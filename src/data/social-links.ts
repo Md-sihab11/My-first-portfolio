@@ -20,13 +20,28 @@ export const socialLinks: SocialLink[] = [
     featured: true,
   },
   // Future verified links can be added here once provided:
-  // {
-  //   platform: "LinkedIn",
-  //   label: "Connect with Shakib on LinkedIn",
-  //   url: "https://linkedin.com/in/...",
-  //   username: "...",
-  //   featured: true,
-  // },
+  {
+    platform: "LinkedIn",
+    label: "Connect with Shakib on LinkedIn",
+    url: "https://linkedin.com/in/...",
+    username: "...",
+    featured: true,
+  },
+  {
+    platform: "LeetCode",
+    label: "Connect with Shakib on LeetCode",
+    url: "https://leetcode.com/u/mdshihab1122/",
+    username: "mdshihab1122",
+    featured: true,
+  },
+  {
+    platform: "Codeforces",
+    label: "Connect with Shakib on Codeforces",
+    url: "https://codeforces.com/profile/shihab1122",
+    username: "shihab1122",
+    featured: true,
+  },
+
 ];
 
 export const getVerifiedSocialLinks = (): SocialLink[] => {

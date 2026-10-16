@@ -79,7 +79,7 @@ export function ContactForm() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="e.g. John Doe"
+                placeholder="e.g. Md Karim Uddin"
                 className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface-muted text-sm text-primary placeholder:text-secondary-muted focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
@@ -109,7 +109,7 @@ export function ContactForm() {
               type="text"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              placeholder="Project inquiry / Opportunity"
+              placeholder="Project inquiry / Internship / Job"
               className="w-full px-4 py-2.5 rounded-lg border border-border bg-surface-muted text-sm text-primary placeholder:text-secondary-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>

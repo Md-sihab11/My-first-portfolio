@@ -7,6 +7,7 @@ import { getVerifiedSocialLinks } from "@/data/social-links";
 import { SocialCard } from "@/components/social/SocialCard";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { techIconsData } from "@/data/tech-icons";
 
 export function Hero() {
   const verifiedSocials = getVerifiedSocialLinks();
@@ -54,22 +55,11 @@ export function Hero() {
                 href={siteConfig.resumeUrl}
                 variant="secondary"
                 size="lg"
-                download={siteConfig.resumeUrl}
+                download="Shihab_Sharar_CV.pdf"
               >
                 <Download className="w-4 h-4" />
                 Download CV
               </Button>
-
-              {/* <div className="hidden sm:flex items-center gap-2 pl-2">
-                {verifiedSocials.map((link) => (
-                  <SocialCard
-                    key={link.platform}
-                    link={link}
-                    variant="icon-only"
-                    className="min-w-[44px] min-h-[44px]"
-                  />
-                ))}
-              </div> */}
             </div>
 
             {/* Mobile Socials Row */}
@@ -86,7 +76,6 @@ export function Hero() {
             </div>
           </div>
 
-
           {/* Side Editorial Profile Card */}
           <div className="lg:col-span-4">
             <div className="relative w-full max-w-[400px] mx-auto px-2 py-4">
@@ -95,17 +84,8 @@ export function Hero() {
                 {/* Circular Orbit Ring */}
                 <div className="absolute inset-[7%] rounded-full border border-accent/20" />
 
-                {/* Animated Tech Stack */}
-                {[
-                  { name: "React", icon: "⚛", color: "#61DAFB" },
-                  { name: "Next.js", icon: "N", color: "currentColor" },
-                  { name: "Node.js", icon: "JS", color: "#5FA04E" },
-                  { name: "Express", icon: "Ex", color: "currentColor" },
-                  { name: "MongoDB", icon: "M", color: "#47A248" },
-                  { name: "JavaScript", icon: "JS", color: "#F7DF1E" },
-                  { name: "Tailwind", icon: "≈", color: "#06B6D4" },
-                  { name: "Git", icon: "⑂", color: "#F05032" },
-                ].map((tech, index, arr) => {
+                {/* Animated Tech Stack with External Image Icons */}
+                {techIconsData.map((tech, index, arr) => {
                   const angle = (index * 360) / arr.length;
 
                   return (
@@ -121,14 +101,19 @@ export function Hero() {
                         <div
                           className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-border bg-surface shadow-glow animate-tech-float transition-transform duration-300 hover:scale-110"
                           style={{
-                            color: tech.color,
                             animationDelay: `${index * -0.25}s`,
                             transform: `rotate(${-angle}deg)`,
                           }}
                         >
-                          <span className="text-sm font-bold sm:text-base">
-                            {tech.icon}
-                          </span>
+                          {/* w-full h-full এর বদলে এখানে fix size দিন */}
+                          <div className="relative w-6 h-6 sm:w-7 sm:h-7">
+                            <Image
+                              src={tech.iconUrl}
+                              alt={tech.name}
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>

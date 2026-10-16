@@ -19,7 +19,7 @@ export default function AboutPage() {
       <Container size="lg">
         <SectionHeading
           eyebrow="Background & Story"
-          title="About Shakib"
+          title="About Md Shihab Sharar"
           description="A candid view into my path as an evolving full-stack developer, what drives my work, and the principles I follow."
         />
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 space-y-6">
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border bg-surface shadow-glow">
               <Image
-                src="/images/profile/profile.png"
+                src="/images/profile/sh.png"
                 alt={`Photo of ${siteConfig.name}`}
                 fill
                 priority
