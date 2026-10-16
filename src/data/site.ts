@@ -1,46 +1,46 @@
 export const siteConfig = {
   name: "shihab",
-  fullName: "Md Sihab Sharar",
+  fullName: "Md Sihab Sharar Mazumder",
   wordmark: "shihab sharar",
-  role: "MERN Stack Developer in Progress",
-  headline: "Building the future of the web with modern tech stack.",
+  role: "Full-Stack Developer & CSE Student",
+  headline: "Building the future of the web with modern tech stack and solid engineering principles.",
   intro:
-    "I'm a passionate developer focused on building modern, responsive, and user-friendly web applications using React, Next.js, and backend technologies. I enjoy solving real-world problems, writing clean and maintainable code, and creating efficient digital experiences with a strong focus on performance, functionality, and scalability.",
+    "I'm a passionate Computer Science student and developer focused on building modern, responsive, and user-friendly web applications using React, Next.js, Java, and MERN stack technologies. I enjoy solving real-world problems, writing clean code, and balancing logical precision with creative energy.",
   about: {
     story:
-      "My development journey is rooted in curiosity and continuous learning. Over the past year, I've dived deep into JavaScript, TypeScript, React, Next.js, and MongoDB—crafting real-world applications that go beyond tutorials to solve everyday challenges.",
+      "My programming journey started with C and C++ STL for competitive programming and algorithmic problem solving. As my passion for software architecture grew, I expanded into backend development with Java and Spring Boot, and now I'm actively building full-stack web applications with the MERN stack and Next.js.",
     philosophy:
       "I believe great web apps are born from thoughtful architecture, clean code, and relentless attention to usability.",
     currentFocus:
-      "Deepening mastery in full-stack Next.js systems, server-side data fetching, robust authentication with Better Auth, and database modeling.",
+      "Deepening mastery in full-stack MERN & Next.js systems, server-side data fetching, robust authentication, and database modeling.",
     hobbies: [
       {
-        title: "Cricket",
+        title: "Creative Writing & Rapping",
         description:
-          "A passionate cricket fan and occasional player. Following the Bangladesh national team keeps me energized outside of code.",
-        emoji: "🏏",
+          "Experimenting with rhythm, words, and storytelling. It fuels my creativity and helps me think flexibly while debugging.",
+        emoji: "✍️",
       },
       {
-        title: "Reading",
+        title: "Library Reading & English Practice",
         description:
-          "I enjoy reading tech blogs, programming books, and science fiction novels. Reading broadens my perspective and fuels creativity.",
+          "Spending quiet hours reading in the library and continuously improving my English proficiency and global perspective.",
         emoji: "📚",
       },
       {
-        title: "Problem Solving",
+        title: "Cricket & Football",
         description:
-          "Working through coding challenges on platforms like LeetCode and HackerRank sharpens my algorithmic thinking beyond project work.",
-        emoji: "🧩",
+          "Staying active and energized by playing cricket and football on the field.",
+        emoji: "⚽",
       },
       {
-        title: "Traveling",
+        title: "Competitive Programming",
         description:
-          "Exploring new places and cultures refreshes my mind and often inspires fresh UI design ideas and color palettes.",
-        emoji: "🌍",
+          "Sharpening algorithmic thinking and logical problem-solving on platforms like LeetCode, Codeforces, and CodeChef.",
+        emoji: "🧩",
       },
     ],
   },
-  location: "Dhaka, Bangladesh",
+  location: "Sayed Nagar, Badda, Dhaka",
   email: "mdsihabsharar22@gmail.com",
   phone: "+8801332416702",
   whatsapp: "+8801332416702",
@@ -54,6 +54,15 @@ export const siteConfig = {
   },
   education: [
     {
+      id: "diu-cse",
+      degree: "B.Sc. in Computer Science and Engineering (CSE)",
+      institution: "Dhaka International University",
+      period: "2024 – Present",
+      group: "Computer Science",
+      description:
+        "Currently studying in the 5th semester, focusing on core computer science fundamentals, data structures, algorithms, and software engineering.",
+    },
+    {
       id: "hsc",
       degree: "Higher Secondary Certificate (HSC)",
       institution: "Comilla Residential School & College",
@@ -62,34 +71,23 @@ export const siteConfig = {
       group: "Science",
       gpa: "4.83 / 5.00",
       description:
-        "Completed HSC in Science group with a focus on Mathematics and Physics. Active participant in science club activities.",
-    },
-    {
-      id: "ssc",
-      degree: "Secondary School Certificate (SSC)",
-      institution: "Comilla Residential School & College",
-      board: "Dhaka Education Board",
-      period: "2019 – 2021",
-      group: "Science",
-      gpa: "5.00 / 5.00",
-      description:
-        "Achieved Golden GPA in SSC examination. Class monitor and active participant in mathematics olympiad.",
+        "Completed HSC in Science group with a focus on Mathematics and Physics.",
     },
   ],
   experience: [
     {
-      id: "ph-web",
-      role: "Web Development Student",
-      company: "Programming Hero",
-      location: "Dhaka, Bangladesh (Online)",
+      id: "dev-journey",
+      role: "Full-Stack Developer & Problem Solver",
+      company: "Self-driven & Academic Projects",
+      location: "Dhaka, Bangladesh",
       period: "2024 – Present",
-      type: "Training Program",
+      type: "Development & Learning",
       description:
-        "Enrolled in the complete web development program by Programming Hero. Learning full-stack development covering JavaScript, React, Next.js, MongoDB, and REST APIs. Building real-world projects as part of the curriculum.",
+        "Building structured full-stack applications using Next.js, React, Node.js, Express, MongoDB, alongside Java & Spring Boot backend APIs. Actively practicing competitive programming and algorithmic problem-solving.",
       highlights: [
-        "Completed modules on JavaScript ES6+, React hooks, and state management",
-        "Built and deployed full-stack Next.js applications with MongoDB integration",
-        "Implemented secure authentication with Better Auth and OAuth",
+        "Transitioned from C/C++ STL problem-solving to Java/Spring Boot backend architecture and MERN stack development",
+        "Built database-driven web applications with modern authentication and responsive Tailwind UI",
+        "Sharpened algorithmic skills on LeetCode, Codeforces, and CodeChef",
       ],
       current: true,
     },

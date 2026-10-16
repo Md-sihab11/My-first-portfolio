@@ -20,7 +20,7 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Background & Story"
           title="About Md Shihab Sharar"
-          description="A candid view into my path as an evolving full-stack developer, what drives my work, and the principles I follow."
+          description="Hi, I’m Md Sihab Sharar Mazumder, a Computer Science and Engineering student currently studying at Dhaka International University."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -66,14 +66,28 @@ export default function AboutPage() {
           <div className="lg:col-span-7 space-y-8 text-secondary leading-relaxed">
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
-                How It All Began
+                My Programming Journey
               </h3>
               <p>
-                My journey into programming started with curiosity about how complex web applications function under the hood. What began as simple HTML and CSS experiments soon evolved into a passionate focus on modern JavaScript, component architectures with React, and full-stack systems using Next.js.
+                My path into programming started out of pure curiosity about how software works under the hood. What began as a casual interest slowly turned into a dedicated commitment to mastering both software development and algorithmic problem-solving. I spend a significant amount of time sharpening my logical thinking by solving problems on platforms like LeetCode, Codeforces, and CodeChef. Over time, I’ve transitioned from writing basic scripts to building structured, fully functional web applications and backend systems.
               </p>
+              <h3 className="text-2xl font-bold text-primary">
+                What I Enjoy Working On
+              </h3>
               <p>
-                Rather than collecting certificates or reading endless documentation in isolation, I learn best by engineering functional, tangible products. Every project I undertake—from the commodity monitoring architecture in <strong>Bazar Dor</strong> to community tool discovery platforms—is treated as a production application.
+                I genuinely enjoy the creative and structural challenge of building for the web. Whether it's crafting smooth, responsive user interfaces or designing solid backend architectures and APIs, I like being involved in the full lifecycle of a project. I love taking an abstract concept or a problem statement and turning it into clean, reliable, and scalable code. For me, the most satisfying part of development is seeing everything come together seamlessly and knowing the system is built to perform.
               </p>
+              <h3 className="text-2xl font-bold text-primary">
+                Beyond the Code
+              </h3>
+              <p>
+                When I step away from my screen and my IDE, I like to keep things balanced with a mix of creative outlets and active pursuits. I have a strong passion for creative writing and rapping, which gives me a fun way to experiment with rhythm, words, and storytelling. I also love exploring new things, continuously practicing and improving my English, and spending quiet, focused hours reading books in the library. On the physical side, you’ll often find me on the field playing cricket or football to stay energized and refreshed.
+
+                I’ve found that all these experiences—whether it's the rhythm of a rhyme, the peaceful focus of a library, or the teamwork on a sports field—help me think more flexibly when I'm debugging or tackling complex logical problems.
+
+                At my core, I'm someone who loves continuous learning, treats every project as a stepping stone to grow, and brings a grounded, creative energy to everything I do.
+              </p>
+
             </div>
 
             <div className="space-y-4">
