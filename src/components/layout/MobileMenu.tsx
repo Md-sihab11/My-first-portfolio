@@ -1,6 +1,8 @@
+
 "use client";
 
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -32,60 +34,63 @@ export function MobileMenu() {
         )}
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 top-[65px] z-[100] flex flex-col justify-between overflow-y-auto bg-background p-6 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
-          <nav className="flex flex-col gap-2.5 pt-2">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
+      {isOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div className="fixed inset-x-0 top-[73px] bottom-0 z-50 overflow-y-auto overscroll-contain bg-background/80 backdrop-blur-2xl border-t border-border flex flex-col justify-between p-6 animate-in fade-in slide-in-from-top-4 duration-200">
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={close}
-                  className={cn(
-                    "flex w-full items-center justify-between rounded-xl border p-4 text-base font-medium transition-colors",
-                    isActive
-                      ? "bg-surface-elevated text-accent border-accent/40 font-semibold"
-                      : "bg-surface text-secondary border-border hover:text-primary"
-                  )}
-                >
-                  <span>{item.label}</span>
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={close}
+                    className={cn(
+                      "flex items-center justify-between p-4 rounded-xl text-lg font-medium transition-colors border",
+                      isActive
+                        ? "bg-surface-elevated/80 text-accent border-accent/30 font-semibold"
+                        : "bg-surface/75 text-secondary hover:text-primary hover:bg-surface/90 border-transparent"
+                    )}
+                  >
+                    <span>{item.label}</span>
 
-                  {item.badge && (
-                    <span className="rounded-full bg-accent-subtle px-2 py-0.5 text-xs font-mono uppercase text-accent">
-                      {item.badge}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
+                    {item.badge && (
+                      <span className="text-xs font-mono uppercase bg-accent-subtle text-accent px-2 py-0.5 rounded-full">
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
 
-            <Link
-              href="/search"
-              onClick={close}
-              className="flex w-full items-center justify-between rounded-xl border border-border bg-surface p-4 text-base font-medium text-secondary transition-colors hover:text-primary"
-            >
-              <span>Search Site</span>
-            </Link>
-          </nav>
+              <Link
+                href="/search"
+                onClick={close}
+                className="flex items-center justify-between p-4 rounded-xl text-lg font-medium text-secondary bg-surface/75 hover:text-primary hover:bg-surface/90 border border-transparent transition-colors"
+              >
+                <span>Search Site</span>
+              </Link>
+            </nav>
 
-          <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6 pb-4">
-            <a
-              href={siteConfig.links.email}
-              onClick={close}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3.5 text-sm font-semibold text-accent-text shadow-glow"
-            >
-              <span>Contact Directly</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+            <div className="pt-6 border-t border-border flex flex-col gap-3">
+              <a
+                href={siteConfig.links.email}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-accent text-accent-text font-semibold shadow-glow text-sm"
+                onClick={close}
+              >
+                <span>Contact Directly</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
 
-            <p className="text-center font-mono text-xs text-secondary-muted pt-2">
-              {siteConfig.wordmark} • {new Date().getFullYear()}
-            </p>
-          </div>
-        </div>
-      )}
+              <p className="text-xs text-center text-secondary-muted font-mono">
+                {siteConfig.wordmark} • {new Date().getFullYear()}
+              </p>
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
