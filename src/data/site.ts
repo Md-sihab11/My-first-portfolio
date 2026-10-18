@@ -1,14 +1,14 @@
 export const siteConfig = {
   name: "shihab",
-  fullName: "Md Sihab Sharar Mazumder",
+  fullName: "Md Shihab Sharar Mazumder",
   wordmark: "shihab sharar",
   role: "Full-Stack Developer & CSE Student",
   headline: "Building the future of the web with modern tech stack and solid engineering principles.",
   intro:
-    "I'm a passionate Computer Science student and developer focused on building modern, responsive, and user-friendly web applications using React, Next.js, Java, and MERN stack technologies. I enjoy solving real-world problems, writing clean code, and balancing logical precision with creative energy.",
+    "a passionate Computer Science & Engineering student and full-stack developer dedicated to building modern, responsive, and user-friendly web applications using React, Next.js, Java, Spring Boot and the MERN stack. I enjoy solving real-world problems, writing clean and maintainable code, and balancing logical precision with creative energy.",
   about: {
     story:
-      "My programming journey started with C and C++ STL for competitive programming and algorithmic problem solving. As my passion for software architecture grew, I expanded into backend development with Java and Spring Boot, and now I'm actively building full-stack web applications with the MERN stack and Next.js.",
+      "My programming journey started with C and C++ STL for competitive programming and algorithmic problem solving. As my passion for software architecture grew, I expanded into backend development with Java and Spring Boot, and now I&apos;m actively building full-stack web applications with the MERN stack and Next.js.",
     philosophy:
       "I believe great web apps are born from thoughtful architecture, clean code, and relentless attention to usability.",
     currentFocus:

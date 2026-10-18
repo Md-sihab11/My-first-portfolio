@@ -32,15 +32,12 @@ export function Hero() {
 
             {/* Editorial Headline */}
             <div className="space-y-4">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary leading-[1.08]">
-                I&apos;m a {" "}
-                <span className="text-accent underline decoration-accent/30 decoration-wavy decoration-from-font">
-                  MERN Stack
-                </span>{" "} <br />
-                Developer
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight text-primary leading-[1.08]">
+                Hi, I&apos;m {" "}
+                Md Shihab Sharar
               </h1>
               <p className="text-lg sm:text-xl text-secondary max-w-2xl leading-relaxed pt-2">
-                Hi, I&apos;m {siteConfig.fullName}. {siteConfig.intro}
+                I&apos;m {siteConfig.intro}
               </p>
             </div>
 

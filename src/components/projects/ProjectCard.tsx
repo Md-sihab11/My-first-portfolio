@@ -1,3 +1,4 @@
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,9 +13,17 @@ interface ProjectCardProps {
   featuredLayout?: boolean;
 }
 
-export function ProjectCard({ project, featuredLayout = false }: ProjectCardProps) {
-  const hasLive = Boolean(project.liveUrl && project.liveUrl.trim().length > 0);
-  const hasGithub = Boolean(project.githubUrl && project.githubUrl.trim().length > 0);
+export function ProjectCard({
+  project,
+  featuredLayout = false,
+}: ProjectCardProps) {
+  const hasLive = Boolean(
+    project.liveUrl && project.liveUrl.trim().length > 0
+  );
+
+  const hasGithub = Boolean(
+    project.githubUrl && project.githubUrl.trim().length > 0
+  );
 
   if (featuredLayout) {
     return (
@@ -36,8 +45,10 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
               />
+
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent lg:hidden" />
             </Link>
+
             <div className="absolute top-4 left-4 z-10 flex gap-2">
               <Badge variant="accent">{project.category}</Badge>
               <Badge variant="default">Featured Project</Badge>
@@ -51,11 +62,13 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 <span className="text-xs font-mono uppercase tracking-widest text-accent">
                   Case Study
                 </span>
+
                 <h3 className="mt-1 text-2xl sm:text-3xl font-bold tracking-tight text-primary group-hover:text-accent transition-colors">
                   <Link href={`/projects/${project.slug}`}>
                     {project.title}
                   </Link>
                 </h3>
+
                 <p className="mt-1 text-sm font-medium text-secondary">
                   {project.tagline}
                 </p>
@@ -70,6 +83,7 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 <span className="text-xs font-mono uppercase tracking-wider text-primary font-semibold block mb-1">
                   Problem & Impact
                 </span>
+
                 <p className="text-xs text-secondary-muted leading-relaxed">
                   {project.problem}
                 </p>
@@ -80,9 +94,14 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 <span className="text-xs font-mono text-secondary-muted block mb-2">
                   Technologies
                 </span>
+
                 <div className="flex flex-wrap gap-1.5">
                   {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
+                    <Badge
+                      key={tech}
+                      variant="outline"
+                      className="text-xs"
+                    >
                       {tech}
                     </Badge>
                   ))}
@@ -101,7 +120,8 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                 <ArrowRight className="w-3.5 h-3.5" />
               </Button>
 
-              {hasGithub && (
+              {/* View Code */}
+              {hasGithub ? (
                 <Button
                   href={project.githubUrl}
                   isExternal
@@ -111,14 +131,33 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
                   <GithubIcon className="w-3.5 h-3.5" />
                   View Code
                 </Button>
+              ) : (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  disabled
+                >
+                  <GithubIcon className="w-3.5 h-3.5" />
+                  View Code
+                </Button>
               )}
 
-              {hasLive && (
+              {/* Live Demo */}
+              {hasLive ? (
                 <Button
                   href={project.liveUrl}
                   isExternal
                   variant="outline"
                   size="sm"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Live Demo
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   Live Demo
@@ -149,6 +188,7 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
             className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </Link>
+
         <div className="absolute top-4 left-4 z-10">
           <Badge variant="accent">{project.category}</Badge>
         </div>
@@ -159,8 +199,11 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
         <div className="space-y-3">
           <div>
             <h3 className="text-xl font-bold tracking-tight text-primary group-hover:text-accent transition-colors">
-              <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+              <Link href={`/projects/${project.slug}`}>
+                {project.title}
+              </Link>
             </h3>
+
             <p className="mt-0.5 text-xs text-secondary-muted font-medium">
               {project.tagline}
             </p>
@@ -172,10 +215,15 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
 
           <div className="flex flex-wrap gap-1 pt-1">
             {project.technologies.slice(0, 4).map((tech) => (
-              <Badge key={tech} variant="outline" className="text-[11px] py-0">
+              <Badge
+                key={tech}
+                variant="outline"
+                className="text-[11px] py-0"
+              >
                 {tech}
               </Badge>
             ))}
+
             {project.technologies.length > 4 && (
               <Badge variant="muted" className="text-[11px] py-0">
                 +{project.technologies.length - 4}
@@ -195,27 +243,48 @@ export function ProjectCard({ project, featuredLayout = false }: ProjectCardProp
           </Link>
 
           <div className="flex items-center gap-1.5">
-            {hasGithub && (
+            {/* View Code */}
+            {hasGithub ? (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.title} source code on GitHub`}
+                title="View Code"
                 className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg border border-border bg-surface-elevated text-secondary hover:text-accent hover:border-accent/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
               </a>
+            ) : (
+              <span
+                aria-label={`Source code unavailable for ${project.title}`}
+                title="Source code not available"
+                className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg border border-border bg-surface-muted text-secondary-muted opacity-50 cursor-not-allowed"
+              >
+                <GithubIcon className="w-3.5 h-3.5" />
+              </span>
             )}
-            {hasLive && (
+
+            {/* Live Demo */}
+            {hasLive ? (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit live demo for ${project.title}`}
+                title="Live Demo"
                 className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg border border-border bg-surface-elevated text-secondary hover:text-accent hover:border-accent/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
+            ) : (
+              <span
+                aria-label={`Live demo unavailable for ${project.title}`}
+                title="Live demo not available yet"
+                className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg border border-border bg-surface-muted text-secondary-muted opacity-50 cursor-not-allowed"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+              </span>
             )}
           </div>
         </div>

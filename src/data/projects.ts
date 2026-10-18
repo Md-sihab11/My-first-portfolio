@@ -1,3 +1,4 @@
+
 import { Project } from "@/types/project";
 
 export const projects: Project[] = [
@@ -23,6 +24,7 @@ export const projects: Project[] = [
       "MongoDB Atlas",
     ],
     githubUrl: "https://github.com/Md-sihab11/bazar-dor",
+    liveUrl: "https://bazar-dor-orpin-nine.vercel.app/",
     featured: true,
     category: "Full-Stack",
     highlights: [
@@ -45,6 +47,8 @@ export const projects: Project[] = [
     image: "/images/projects/devstack.png",
     imageAlt: "DevStack developer tool catalog interface",
     technologies: ["React", "JavaScript", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Md-sihab11/dev-stack-builder",
+    liveUrl: "https://devstackb.netlify.app/",
     featured: true,
     category: "Frontend",
     highlights: [
@@ -66,12 +70,45 @@ export const projects: Project[] = [
     image: "/images/projects/bpl-dream.png",
     imageAlt: "BPL Dream fantasy cricket squad selection interface",
     technologies: ["React", "JavaScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/Md-sihab11/bpl-fantasy-squad-builder",
+    liveUrl: "https://bplbuilder.netlify.app/",
     featured: false,
     category: "React",
     highlights: [
       "Live coin budget updates upon player addition and removal",
       "Enforced roster limits (maximum 6 players per team)",
       "Instant feedback notifications for invalid draft attempts",
+    ],
+  },
+  {
+    slug: "fitlog-workout-library",
+    title: "FitLog - Workout Library",
+    tagline: "Responsive Workout Library & Personal Fitness Planner",
+    description:
+      "A simple and responsive workout library built with Next.js that allows users to explore workouts, view detailed workout instructions, save workouts for later, and create a personalized workout plan.",
+    problem:
+      "Finding suitable workouts and organizing a consistent fitness routine can be challenging without a centralized place to explore exercises and manage workout plans.",
+    solution:
+      "Developed a responsive workout library with detailed workout pages, saved workouts, and a personal workout planner using reusable React components and Context API for state management.",
+    image: "/images/projects/fit.png",
+    imageAlt: "FitLog workout library and personal fitness planner interface",
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Context API",
+    ],
+    githubUrl: "https://github.com/Md-sihab11/fitlog-workout-library",
+    liveUrl: "https://fitlog-workout-library-pink.vercel.app/",
+    featured: true,
+    category: "Full-Stack",
+    highlights: [
+      "Browse workouts with category, difficulty, duration, and equipment information",
+      "View detailed workout instructions through dynamic routes",
+      "Create and manage a personalized workout plan",
+      "Save workouts for quick access later",
+      "Responsive interface optimized for desktop, tablet, and mobile devices",
     ],
   },
 ];
