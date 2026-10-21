@@ -25,7 +25,7 @@ export function ResourceFilters({
             className={cn(
               "px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-colors border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
               isSelected
-                ? "bg-accent text-accent-text border-accent font-semibold"
+                ? "bg-accent-solid text-accent-text border-accent-solid font-semibold"
                 : "bg-surface text-secondary hover:text-primary hover:bg-surface-elevated border-border"
             )}
           >

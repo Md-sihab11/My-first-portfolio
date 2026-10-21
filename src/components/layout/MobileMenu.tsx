@@ -77,7 +77,7 @@ export function MobileMenu() {
             <div className="pt-6 border-t border-border flex flex-col gap-3">
               <a
                 href={siteConfig.links.email}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-accent text-accent-text font-semibold shadow-glow text-sm"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-accent-solid text-accent-text font-semibold shadow-glow text-sm"
                 onClick={close}
               >
                 <span>Contact Directly</span>

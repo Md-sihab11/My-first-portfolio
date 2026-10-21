@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, ChevronDown, BookOpen, Compass } from "lucide-react";
+import { Search, ChevronDown, BookOpen, Compass, GraduationCap } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeToggle } from "./ThemeToggle";
@@ -22,7 +22,9 @@ export function Navbar() {
   const moreDropdownRef = useRef<HTMLDivElement>(null);
 
   const isMoreActive =
-    pathname.startsWith("/articles") || pathname.startsWith("/resources");
+    pathname.startsWith("/articles") ||
+    pathname.startsWith("/resources") ||
+    pathname.startsWith("/study-abroad");
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -45,7 +47,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/70 bg-background/80 backdrop-blur-md transition-all">
-      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[72px] w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Wordmark */}
         <Link
           href="/"
@@ -165,6 +167,30 @@ export function Navbar() {
                       </span>
                     </div>
                   </Link>
+
+                  <Link
+                    href="/study-abroad"
+                    role="menuitem"
+                    onClick={() => setIsMoreOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition-all group",
+                      pathname.startsWith("/study-abroad")
+                        ? "bg-surface-elevated text-accent font-semibold"
+                        : "text-secondary hover:text-primary hover:bg-surface-muted"
+                    )}
+                  >
+                    <div className="p-2 rounded-lg bg-surface-muted border border-border group-hover:border-accent/40 group-hover:text-accent transition-colors">
+                      <GraduationCap className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <span className="font-semibold text-primary group-hover:text-accent transition-colors">
+                        Study Abroad
+                      </span>
+                      <span className="text-[10px] text-secondary-muted font-normal">
+                        Scholarships & visa guides
+                      </span>
+                    </div>
+                  </Link>
                 </div>
               </div>
             )}
@@ -206,7 +232,7 @@ export function Navbar() {
 
           <Link
             href="/contact"
-            className="hidden lg:inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs uppercase font-mono tracking-wider font-semibold bg-accent text-accent-text hover:bg-accent-hover transition-colors shadow-glow"
+            className="hidden lg:inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs uppercase font-mono tracking-wider font-semibold bg-accent-solid text-accent-text hover:bg-accent-solid-hover transition-colors shadow-glow"
           >
             Let&apos;s Connect
           </Link>

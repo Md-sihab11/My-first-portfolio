@@ -89,7 +89,7 @@ export function Footer() {
             © {currentYear} {siteConfig.wordmark}. All rights reserved.
           </p>
           <p className="flex items-center gap-1.5">
-            Designed with <span className="text-accent">#C5F467</span> editorial aesthetics
+            Designed with <span className="text-accent">#8EC5FF</span> editorial aesthetics
           </p>
         </div>
       </Container>

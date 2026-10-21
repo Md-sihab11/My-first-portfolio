@@ -11,12 +11,14 @@ export function Container({
   children,
   ...props
 }: ContainerProps) {
+  // Wide, centered content with generous side margins on large screens.
+  // The size prop is kept so existing callers continue to type-check.
   const sizeMap = {
-    sm: "max-w-3xl",
-    md: "max-w-5xl",
-    lg: "max-w-6xl",
-    xl: "max-w-7xl",
-    full: "max-w-full",
+    sm: "max-w-[1440px]",
+    md: "max-w-[1440px]",
+    lg: "max-w-[1440px]",
+    xl: "max-w-[1440px]",
+    full: "max-w-[1440px]",
   };
 
   return (

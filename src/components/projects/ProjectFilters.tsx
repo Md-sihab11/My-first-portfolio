@@ -25,7 +25,7 @@ export function ProjectFilters({
             className={cn(
               "px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
               isSelected
-                ? "bg-accent text-accent-text border-accent font-semibold shadow-glow"
+                ? "bg-accent-solid text-accent-text border-accent-solid font-semibold shadow-glow"
                 : "bg-surface text-secondary hover:text-primary hover:bg-surface-elevated border-border"
             )}
           >

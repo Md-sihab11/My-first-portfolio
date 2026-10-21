@@ -30,10 +30,10 @@ export function ProjectCard({
       <article className="group relative rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-300 hover:border-accent/40 hover:shadow-glow">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
           {/* Screenshot Container */}
-          <div className="lg:col-span-7 relative bg-surface-muted/60 overflow-hidden min-h-[320px] sm:min-h-[420px] border-b lg:border-b-0 lg:border-r border-border flex items-center justify-center p-4 sm:p-6">
+          <div className="lg:col-span-7 relative bg-surface-muted/60 overflow-hidden min-h-[260px] sm:min-h-[340px] border-b lg:border-b-0 lg:border-r border-border flex items-center justify-center p-4 sm:p-5">
             <Link
               href={`/projects/${project.slug}`}
-              className="block relative w-full h-full min-h-[280px] sm:min-h-[360px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-xl overflow-hidden shadow-md group-hover:shadow-xl transition-all"
+              className="block relative w-full h-full min-h-[220px] sm:min-h-[300px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-xl overflow-hidden shadow-md group-hover:shadow-xl transition-all"
               tabIndex={-1}
               aria-hidden="true"
             >
@@ -56,14 +56,14 @@ export function ProjectCard({
           </div>
 
           {/* Details Container */}
-          <div className="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+          <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between">
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-accent">
                   Case Study
                 </span>
 
-                <h3 className="mt-1 text-2xl sm:text-3xl font-bold tracking-tight text-primary group-hover:text-accent transition-colors">
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-primary group-hover:text-accent transition-colors">
                   <Link href={`/projects/${project.slug}`}>
                     {project.title}
                   </Link>

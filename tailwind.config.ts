@@ -28,6 +28,8 @@ const config: Config = {
         accent: {
           DEFAULT: "rgb(var(--accent) / <alpha-value>)",
           hover: "rgb(var(--accent-hover) / <alpha-value>)",
+          solid: "rgb(var(--accent-solid) / <alpha-value>)",
+          "solid-hover": "rgb(var(--accent-solid-hover) / <alpha-value>)",
           subtle: "rgb(var(--accent-subtle) / <alpha-value>)",
           text: "rgb(var(--accent-text) / <alpha-value>)",
         },

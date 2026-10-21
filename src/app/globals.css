@@ -3,49 +3,53 @@
 @tailwind utilities;
 
 :root {
-  /* Clean, crisp light theme tokens */
-  --background: 248 249 250;
+  /* Light theme tokens, harmonized with the blue accent family */
+  --background: 247 249 252;
   --surface: 255 255 255;
-  --surface-muted: 241 243 245;
+  --surface-muted: 241 244 249;
   --surface-elevated: 255 255 255;
 
-  --text-primary: 24 28 26;
-  --text-muted: 65 74 69;
+  --text-primary: 17 24 33;
+  --text-muted: 51 62 79;
 
-  --text-secondary: 90 101 94;
-  --text-secondary-muted: 130 142 135;
+  --text-secondary: 85 97 116;
+  --text-secondary-muted: 122 134 152;
 
-  --accent: 101 163 13;
-  --accent-hover: 77 124 15;
-  --accent-subtle: 236 252 203;
+  --accent: 37 99 201;
+  --accent-hover: 30 82 168;
+  --accent-solid: 37 99 201;
+  --accent-solid-hover: 30 82 168;
+  --accent-subtle: 226 238 255;
   --accent-text: 255 255 255;
 
-  --border: 226 232 227;
-  --border-subtle: 238 242 239;
-  --border-highlight: 195 205 197;
+  --border: 224 230 239;
+  --border-subtle: 237 241 247;
+  --border-highlight: 190 201 217;
 }
 
 .dark {
-  /* Signature editorial dark theme tokens */
-  --background: 11 13 12;
-  --surface: 20 23 21;
-  --surface-muted: 24 29 26;
-  --surface-elevated: 29 35 31;
+  /* Premium dark navy-black theme tokens */
+  --background: 9 14 23;
+  --surface: 17 25 39;
+  --surface-muted: 14 22 36;
+  --surface-elevated: 29 40 56;
 
-  --text-primary: 244 245 240;
-  --text-muted: 210 214 206;
+  --text-primary: 242 245 250;
+  --text-muted: 185 194 208;
 
-  --text-secondary: 160 166 159;
-  --text-secondary-muted: 115 122 114;
+  --text-secondary: 139 150 168;
+  --text-secondary-muted: 117 133 156;
 
-  --accent: 197 244 103;
-  --accent-hover: 180 230 84;
-  --accent-subtle: 27 42 18;
-  --accent-text: 11 13 12;
+  --accent: 142 197 255;
+  --accent-hover: 167 214 255;
+  --accent-solid: 120 181 245;
+  --accent-solid-hover: 142 197 255;
+  --accent-subtle: 20 39 60;
+  --accent-text: 9 14 23;
 
-  --border: 34 40 36;
-  --border-subtle: 25 30 27;
-  --border-highlight: 48 58 51;
+  --border: 52 64 84;
+  --border-subtle: 37 50 70;
+  --border-highlight: 70 86 111;
 }
 
 html {

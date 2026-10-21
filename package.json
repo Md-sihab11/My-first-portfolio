@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "seed:study-abroad": "node scripts/seed-study-abroad.mjs",
+    "hash:study-abroad": "node scripts/hash-study-abroad-code.mjs",
     "lint": "next lint"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^1.16.0",
     "next": "^16.4.2",
+    "postgres": "^3.4.9",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-icons": "^5.7.0",
