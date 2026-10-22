@@ -29,7 +29,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 space-y-6">
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border bg-surface shadow-glow">
               <Image
-                src="/images/profile/sh.png"
+                src="/images/profile/sh1.jpeg"
                 alt={`Photo of ${siteConfig.name}`}
                 fill
                 priority
