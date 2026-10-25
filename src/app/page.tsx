@@ -16,8 +16,8 @@ export default function HomePage() {
       <Hero />
       <AboutPreview />
       <Education />
-      <FeaturedProjects />
       <Skills />
+      <FeaturedProjects />
       <LatestPosts posts={posts} />
       <ContactCTA />
     </div>

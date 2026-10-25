@@ -111,5 +111,40 @@ export const projects: Project[] = [
       "Instant feedback notifications for invalid draft attempts",
     ],
   },
+  {
+    slug: "wanderlust",
+    title: "Wanderlust",
+    tagline: "Discover, Explore & Book Your Next Unforgettable Journey",
+    description:
+      "A modern travel and destination listing web application that helps users discover stunning destinations, explore detailed travel information, manage bookings, and plan unforgettable journeys with a seamless, responsive user experience.",
+    problem:
+      "Finding suitable travel destinations, accessing essential trip information, managing reservations, and keeping travel plans organized across different services can be time-consuming and inconvenient.",
+    solution:
+      "Developed a responsive travel platform featuring destination discovery, detailed destination pages, new destination listings, secure authentication with Google OAuth, password recovery, booking management, and user profile functionality.",
+    image: "/images/projects/wanderlast.png",
+    imageAlt: "Wanderlust travel destination discovery and booking interface",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "shadcn/ui",
+      "Better Auth",
+      "MongoDB",
+      "Lucide React"
+    ],
+    githubUrl: "https://github.com/Md-sihab11/wanderlast",
+    liveUrl: "",
+    featured: true,
+    category: "Full Stack",
+    highlights: [
+      "Browse curated travel destinations with rich visuals and detailed information",
+      "Add, edit, and manage destination listings",
+      "Secure sign-up, sign-in, Google OAuth, and password recovery with Better Auth",
+      "View and manage travel reservations through the My Bookings page",
+      "Responsive, accessible UI with 40+ shadcn components",
+      "MongoDB integration with strict TypeScript and Next.js App Router"
+    ],
+  }
 
 ];
