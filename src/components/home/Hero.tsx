@@ -33,18 +33,11 @@ const heroStyles = `
 .hero-cta2{animation:heroFade .8s cubic-bezier(.22,.68,.35,1) 1.07s both}
 .hero-prof{animation:heroFade .7s cubic-bezier(.22,.68,.35,1) both;animation-delay:calc(1.25s + var(--i) * .08s)}
 
-/* Portrait mask applied via CSS so responsive overrides work (inline style can't be overridden by media query) */
+/* Fade the suit into the black background just above the buttons (same on every screen size) */
 .hero-portrait-img{
   object-fit:contain;
   -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 74%,transparent 97%);
   mask-image:linear-gradient(to bottom,#000 0%,#000 74%,transparent 97%);
-}
-/* Mobile: extend opaque area so portrait fully covers the headline behind it */
-@media (max-width:639px){
-  .hero-portrait-img{
-    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 92%,transparent 100%);
-    mask-image:linear-gradient(to bottom,#000 0%,#000 92%,transparent 100%);
-  }
 }
 @media (prefers-reduced-motion:reduce){
   .hero-glow,.hero-eyebrow,.hero-line-l,.hero-line-r,.hero-title,.hero-portrait-wrap,.hero-cta1,.hero-cta2,.hero-prof{animation:none}
@@ -74,10 +67,13 @@ export function Hero() {
     .sort((a, b) => rank(a.key) - rank(b.key));
 
   return (
+    /*
+      Mobile (<640px): same composition as desktop, scaled to the phone width.
+      Height = 128vw (capped at 560px) so every % position below stays proportional.
+      Desktop (>=640px): unchanged, 1024:572 aspect.
+    */
     <section
-      className={`${poppins.className} relative w-full overflow-hidden bg-[#040302]
-        sm:aspect-[1024/572] sm:min-h-[560px]
-        max-sm:min-h-[600px]`}
+      className={`${poppins.className} relative w-full overflow-hidden bg-[#040302] max-sm:h-[min(128vw,560px)] sm:aspect-[1024/572] sm:min-h-[560px]`}
     >
       <style dangerouslySetInnerHTML={{ __html: heroStyles }} />
 
@@ -87,42 +83,26 @@ export function Hero() {
       </div>
 
       {/* ── Eyebrow ─────────────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 z-10 flex items-center justify-center
-        sm:top-[5.8%] sm:gap-[1.2vw]
-        max-sm:top-6 max-sm:gap-[2vw]">
+      <div className="absolute inset-x-0 z-10 flex items-center justify-center max-sm:top-[4%] max-sm:gap-[2.5vw] sm:top-[5.8%] sm:gap-[1.2vw]">
         <span
           aria-hidden="true"
-          className="hero-line-l h-[1.5px] bg-gradient-to-r from-transparent to-[#ff7a2e]
-            sm:w-[clamp(2rem,20vw,22rem)] max-sm:w-[16vw]"
+          className="hero-line-l h-[1.5px] bg-gradient-to-r from-transparent to-[#ff7a2e] max-sm:w-[12vw] sm:w-[clamp(2rem,20vw,22rem)]"
         />
-        <span className="hero-eyebrow font-bold uppercase tracking-[0.05em] text-white
-          sm:text-[clamp(0.85rem,1.95vw,1.5rem)] max-sm:text-[3vw]">
+        <span className="hero-eyebrow font-bold uppercase tracking-[0.05em] text-white max-sm:text-[clamp(0.7rem,3.3vw,1rem)] sm:text-[clamp(0.85rem,1.95vw,1.5rem)]">
           Software Developer
         </span>
         <span
           aria-hidden="true"
-          className="hero-line-r h-[1.5px] bg-gradient-to-l from-transparent to-[#ff7a2e]
-            sm:w-[clamp(2rem,20vw,22rem)] max-sm:w-[16vw]"
+          className="hero-line-r h-[1.5px] bg-gradient-to-l from-transparent to-[#ff7a2e] max-sm:w-[12vw] sm:w-[clamp(2rem,20vw,22rem)]"
         />
       </div>
 
-      {/* ── Headline ─ z-[1] = BEHIND portrait (z-10) ──────────────── */}
-      {/*
-          Mobile math (600px section, 390px wide screen):
-          - Portrait: top=5%(30px), w=88%(343px), h=343×896/1195=257px, bottom=287px
-          - Mask opaque 92%: 30+236=266px → portrait covers 30–266px
-          - Title text-[21vw]=82px, scaleY(1.31)→107px, center=43%(258px)
-          - Title spans 258-54=204px to 258+54=312px
-          - Covered by portrait: 204–266px ✓ (text is behind image)
-          - Visible below fade (266–287px): only 46px partially fading
-      */}
-      <div className="pointer-events-none absolute inset-x-0 z-[1] -translate-y-1/2
-        sm:top-[49.5%]
-        max-sm:top-[43%]">
+      {/* ── Headline (z-[1] = behind the portrait) ──────────────────── */}
+      {/* 15vw keeps "BUILD DIFFERENT" at ~90% of the screen width, so it never gets clipped. */}
+      <div className="pointer-events-none absolute inset-x-0 z-[1] -translate-y-1/2 max-sm:top-[43%] sm:top-[49.5%]">
         <div className="[transform:scaleY(1.31)]">
           <h1
-            className={`${anton.className} hero-title whitespace-nowrap bg-[linear-gradient(180deg,#f58b3f_0%,#ee6a2c_50%,#d6431f_100%)] bg-clip-text text-center leading-[0.86] text-transparent drop-shadow-[0_0_40px_rgba(255,100,20,0.22)]
-              sm:text-[15vw] max-sm:text-[21vw]`}
+            className={`${anton.className} hero-title whitespace-nowrap bg-[linear-gradient(180deg,#f58b3f_0%,#ee6a2c_50%,#d6431f_100%)] bg-clip-text text-center text-[15vw] leading-[0.86] text-transparent drop-shadow-[0_0_40px_rgba(255,100,20,0.22)]`}
           >
             <span className="sr-only">Md Sihab Sharar — </span>
             BUILD DIFFERENT
@@ -130,49 +110,39 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Portrait ─ z-10 = IN FRONT of headline (z-1) ──────────── */}
-      <div className="absolute left-1/2 z-10 aspect-[1195/896] -translate-x-1/2
-        sm:top-[12%] sm:w-[55%]
-        max-sm:top-[5%] max-sm:w-[88%]">
+      {/* ── Portrait (z-10 = in front of the headline) ──────────────── */}
+      <div className="absolute left-1/2 z-10 aspect-[1195/896] -translate-x-1/2 max-sm:top-[12%] max-sm:w-[92%] sm:top-[12%] sm:w-[55%]">
         <div className="hero-portrait-wrap relative h-full w-full">
           <Image
             src="/images/profile/hero-reference.png"
             alt="Picture of Md Sihab Sharar"
             fill
             priority
-            sizes="(max-width: 639px) 88vw, 55vw"
+            sizes="(max-width: 639px) 92vw, 55vw"
             className="hero-portrait-img"
           />
         </div>
       </div>
 
       {/* ── Buttons ─────────────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 z-20 flex items-center justify-center
-        sm:top-[80%] sm:gap-[1.8vw]
-        max-sm:top-[77%] max-sm:gap-3">
+      <div className="absolute inset-x-0 z-20 flex items-center justify-center max-sm:top-[71.5%] max-sm:gap-3 sm:top-[80%] sm:gap-[1.8vw]">
         <Link
           href="/projects"
-          className="hero-cta1 inline-flex items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,#ff8f45_0%,#f0601f_100%)] font-semibold text-[#24100a] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff7a2e]
-            sm:h-[clamp(44px,4.9vw,56px)] sm:px-[clamp(1.25rem,2.2vw,1.75rem)] sm:text-[clamp(0.9rem,1.7vw,1.15rem)]
-            max-sm:h-11 max-sm:px-5 max-sm:text-sm"
+          className="hero-cta1 inline-flex items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,#ff8f45_0%,#f0601f_100%)] font-semibold text-[#24100a] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff7a2e] max-sm:h-11 max-sm:px-[4.6vw] max-sm:text-[clamp(0.8rem,3.5vw,0.95rem)] sm:h-[clamp(44px,4.9vw,56px)] sm:px-[clamp(1.25rem,2.2vw,1.75rem)] sm:text-[clamp(0.9rem,1.7vw,1.15rem)]"
         >
           Explore Projects
         </Link>
         <a
           href={siteConfig.resumeUrl}
           download="Shihab_Sharar_CV.pdf"
-          className="hero-cta2 inline-flex items-center justify-center rounded-[10px] border border-[#ffb27a]/35 bg-[#0d0a08] font-semibold text-white transition hover:border-[#ffb27a]/70 hover:bg-[#1a120d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb27a]
-            sm:h-[clamp(44px,4.9vw,56px)] sm:px-[clamp(1.25rem,2.2vw,1.75rem)] sm:text-[clamp(0.9rem,1.7vw,1.15rem)]
-            max-sm:h-11 max-sm:px-5 max-sm:text-sm"
+          className="hero-cta2 inline-flex items-center justify-center rounded-[10px] border border-[#ffb27a]/35 bg-[#0d0a08] font-semibold text-white transition hover:border-[#ffb27a]/70 hover:bg-[#1a120d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb27a] max-sm:h-11 max-sm:px-[4.6vw] max-sm:text-[clamp(0.8rem,3.5vw,0.95rem)] sm:h-[clamp(44px,4.9vw,56px)] sm:px-[clamp(1.25rem,2.2vw,1.75rem)] sm:text-[clamp(0.9rem,1.7vw,1.15rem)]"
         >
           Download CV
         </a>
       </div>
 
       {/* ── Profiles ─────────────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 z-20 flex flex-wrap items-center justify-center gap-x-[0.5em] px-4 font-medium
-        sm:top-[92.2%] sm:text-[clamp(0.7rem,1.45vw,1rem)]
-        max-sm:top-[90%] max-sm:text-[2.7vw]">
+      <div className="absolute inset-x-0 z-20 flex flex-wrap items-center justify-center gap-x-[0.5em] gap-y-1 px-4 font-medium max-sm:top-[86.5%] max-sm:text-[clamp(0.68rem,3vw,0.8rem)] sm:top-[92.2%] sm:text-[clamp(0.7rem,1.45vw,1rem)]">
         <span
           className="hero-prof mr-[0.2em] font-bold tracking-[0.02em] text-[#d9773a]"
           style={{ "--i": 0 } as CSSProperties}
