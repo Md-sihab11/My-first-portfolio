@@ -67,8 +67,8 @@ export function Hero() {
   return (
     <section
       className={`${poppins.className} relative w-full overflow-hidden bg-[#040302]
-        min-h-[520px] aspect-[1024/572]
-        max-sm:aspect-auto max-sm:min-h-0 max-sm:pb-[18%]`}
+        aspect-[1024/572] min-h-[560px]
+        max-sm:aspect-auto max-sm:min-h-[600px]`}
     >
       <style dangerouslySetInnerHTML={{ __html: heroStyles }} />
 
@@ -93,13 +93,13 @@ export function Hero() {
       </div>
 
       {/* ── Headline (behind the portrait) ──────────────────────── */}
-      <div className="pointer-events-none absolute inset-x-0 z-[1]
-        top-[49.5%] -translate-y-1/2
-        max-sm:top-[46%]">
+      <div className="pointer-events-none absolute inset-x-0 z-[1] -translate-y-1/2
+        top-[49.5%]
+        max-sm:top-[47%]">
         <div className="[transform:scaleY(1.31)]">
           <h1
             className={`${anton.className} hero-title whitespace-nowrap bg-[linear-gradient(180deg,#f58b3f_0%,#ee6a2c_50%,#d6431f_100%)] bg-clip-text text-center leading-[0.86] text-transparent drop-shadow-[0_0_40px_rgba(255,100,20,0.22)]
-              text-[15vw] max-sm:text-[18vw]`}
+              text-[15vw] max-sm:text-[20vw]`}
           >
             <span className="sr-only">Md Sihab Sharar — </span>
             BUILD DIFFERENT
@@ -110,7 +110,7 @@ export function Hero() {
       {/* ── Portrait (in front of the headline) ─────────────────── */}
       <div className="absolute left-1/2 z-10 aspect-[1195/896] -translate-x-1/2
         top-[12%] w-[55%]
-        max-sm:top-[14%] max-sm:w-[90%]">
+        max-sm:top-[10%] max-sm:w-[78%]">
         <div className="hero-portrait relative h-full w-full">
           <Image
             src="/images/profile/hero-reference.png"
@@ -127,11 +127,12 @@ export function Hero() {
       {/* ── Buttons ─────────────────────────────────────────────── */}
       <div className="absolute inset-x-0 z-20 flex items-center justify-center
         top-[80%] gap-[1.8vw] sm:gap-[1.6vw]
-        max-sm:top-[78%] max-sm:gap-[3vw]">
+        max-sm:top-[79%] max-sm:gap-4">
         <Link
           href="/projects"
           className="hero-cta1 inline-flex items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,#ff8f45_0%,#f0601f_100%)] font-semibold text-[#24100a] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff7a2e]
-            h-[clamp(36px,4.9vw,56px)] px-[clamp(0.9rem,2.2vw,1.75rem)] text-[clamp(0.75rem,3vw,1.15rem)]"
+            h-[clamp(36px,4.9vw,56px)] px-[clamp(0.9rem,2.2vw,1.75rem)] text-[clamp(0.75rem,3vw,1.15rem)]
+            max-sm:h-11 max-sm:px-5 max-sm:text-sm"
         >
           Explore Projects
         </Link>
@@ -140,7 +141,8 @@ export function Hero() {
           href={siteConfig.resumeUrl}
           download="Shihab_Sharar_CV.pdf"
           className="hero-cta2 inline-flex items-center justify-center rounded-[10px] border border-[#ffb27a]/35 bg-[#0d0a08] font-semibold text-white transition hover:border-[#ffb27a]/70 hover:bg-[#1a120d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb27a]
-            h-[clamp(36px,4.9vw,56px)] px-[clamp(0.9rem,2.2vw,1.75rem)] text-[clamp(0.75rem,3vw,1.15rem)]"
+            h-[clamp(36px,4.9vw,56px)] px-[clamp(0.9rem,2.2vw,1.75rem)] text-[clamp(0.75rem,3vw,1.15rem)]
+            max-sm:h-11 max-sm:px-5 max-sm:text-sm"
         >
           Download CV
         </a>
@@ -149,7 +151,7 @@ export function Hero() {
       {/* ── Profiles row ────────────────────────────────────────── */}
       <div className="absolute inset-x-0 z-20 flex flex-wrap items-center justify-center gap-x-[0.5em] px-4 font-medium
         top-[92.2%] text-[clamp(0.7rem,1.45vw,1rem)]
-        max-sm:top-[90%] max-sm:text-[clamp(0.6rem,2.8vw,0.85rem)]">
+        max-sm:top-[91%] max-sm:text-xs">
         <span
           className="hero-prof mr-[0.2em] font-bold tracking-[0.02em] text-[#d9773a]"
           style={{ "--i": 0 } as CSSProperties}
