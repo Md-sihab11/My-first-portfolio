@@ -8,8 +8,6 @@ import { getVerifiedSocialLinks } from "@/data/social-links";
 const anton = Anton({ weight: "400", subsets: ["latin"], display: "swap" });
 const poppins = Poppins({ weight: ["500", "600", "700"], subsets: ["latin"], display: "swap" });
 
-/* Entrance order: glow → eyebrow lines → headline reveal → portrait rise → buttons → profiles.
-   After the intro: slow glow breathing, portrait float, CTA glow pulse. */
 const heroStyles = `
 @keyframes heroFade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes heroLine{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
@@ -30,17 +28,28 @@ const heroStyles = `
 .hero-line-l{transform-origin:right center;animation:heroLine .9s cubic-bezier(.22,.68,.35,1) .15s both}
 .hero-line-r{transform-origin:left center;animation:heroLine .9s cubic-bezier(.22,.68,.35,1) .15s both}
 .hero-title{animation:heroTitle 1.1s cubic-bezier(.22,.68,.35,1) .25s both}
-.hero-portrait{animation:heroPortrait 1.2s cubic-bezier(.22,.68,.35,1) .5s both,heroFloat 8s ease-in-out 1.9s infinite}
+.hero-portrait-wrap{animation:heroPortrait 1.2s cubic-bezier(.22,.68,.35,1) .5s both,heroFloat 8s ease-in-out 1.9s infinite}
 .hero-cta1{animation:heroFade .8s cubic-bezier(.22,.68,.35,1) .95s both,heroPulse 3.6s ease-in-out 2s infinite}
 .hero-cta2{animation:heroFade .8s cubic-bezier(.22,.68,.35,1) 1.07s both}
 .hero-prof{animation:heroFade .7s cubic-bezier(.22,.68,.35,1) both;animation-delay:calc(1.25s + var(--i) * .08s)}
+
+/* Portrait mask applied via CSS so responsive overrides work (inline style can't be overridden by media query) */
+.hero-portrait-img{
+  object-fit:contain;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 74%,transparent 97%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 74%,transparent 97%);
+}
+/* Mobile: extend opaque area so portrait fully covers the headline behind it */
+@media (max-width:639px){
+  .hero-portrait-img{
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 92%,transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 92%,transparent 100%);
+  }
+}
 @media (prefers-reduced-motion:reduce){
-  .hero-glow,.hero-eyebrow,.hero-line-l,.hero-line-r,.hero-title,.hero-portrait,.hero-cta1,.hero-cta2,.hero-prof{animation:none}
+  .hero-glow,.hero-eyebrow,.hero-line-l,.hero-line-r,.hero-title,.hero-portrait-wrap,.hero-cta1,.hero-cta2,.hero-prof{animation:none}
 }
 `;
-
-/* Fade the suit into the black background just above the buttons. */
-const portraitMask = "linear-gradient(to bottom, #000 0%, #000 74%, transparent 97%)";
 
 const PROFILE_LABELS: Record<string, string> = {
   github: "GitHub",
@@ -67,39 +76,53 @@ export function Hero() {
   return (
     <section
       className={`${poppins.className} relative w-full overflow-hidden bg-[#040302]
-        aspect-[1024/572] min-h-[560px]
-        max-sm:aspect-auto max-sm:min-h-[600px]`}
+        sm:aspect-[1024/572] sm:min-h-[560px]
+        max-sm:min-h-[600px]`}
     >
       <style dangerouslySetInnerHTML={{ __html: heroStyles }} />
 
-      {/* ── Backdrop: pure black + hot orange glow on the left edge ── */}
+      {/* ── Backdrop glow ─────────────────────────────────────────── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="hero-glow absolute inset-0 bg-[radial-gradient(ellipse_22%_36%_at_0%_47%,rgba(255,112,10,0.95)_0%,rgba(255,84,0,0.5)_38%,rgba(255,70,0,0.12)_72%,transparent_100%)]" />
       </div>
 
-      {/* ── Eyebrow ─────────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 top-[5.8%] z-10 flex items-center justify-center gap-[1.2vw] max-sm:gap-[2.5vw]">
+      {/* ── Eyebrow ─────────────────────────────────────────────────── */}
+      <div className="absolute inset-x-0 z-10 flex items-center justify-center
+        sm:top-[5.8%] sm:gap-[1.2vw]
+        max-sm:top-6 max-sm:gap-[2vw]">
         <span
           aria-hidden="true"
-          className="hero-line-l h-[1.5px] w-[clamp(2rem,20vw,22rem)] bg-gradient-to-r from-transparent to-[#ff7a2e]"
+          className="hero-line-l h-[1.5px] bg-gradient-to-r from-transparent to-[#ff7a2e]
+            sm:w-[clamp(2rem,20vw,22rem)] max-sm:w-[16vw]"
         />
-        <span className="hero-eyebrow text-[clamp(0.75rem,3.5vw,1.5rem)] font-bold uppercase tracking-[0.05em] text-white">
+        <span className="hero-eyebrow font-bold uppercase tracking-[0.05em] text-white
+          sm:text-[clamp(0.85rem,1.95vw,1.5rem)] max-sm:text-[3vw]">
           Software Developer
         </span>
         <span
           aria-hidden="true"
-          className="hero-line-r h-[1.5px] w-[clamp(2rem,20vw,22rem)] bg-gradient-to-l from-transparent to-[#ff7a2e]"
+          className="hero-line-r h-[1.5px] bg-gradient-to-l from-transparent to-[#ff7a2e]
+            sm:w-[clamp(2rem,20vw,22rem)] max-sm:w-[16vw]"
         />
       </div>
 
-      {/* ── Headline (behind the portrait) ──────────────────────── */}
+      {/* ── Headline ─ z-[1] = BEHIND portrait (z-10) ──────────────── */}
+      {/*
+          Mobile math (600px section, 390px wide screen):
+          - Portrait: top=5%(30px), w=88%(343px), h=343×896/1195=257px, bottom=287px
+          - Mask opaque 92%: 30+236=266px → portrait covers 30–266px
+          - Title text-[21vw]=82px, scaleY(1.31)→107px, center=43%(258px)
+          - Title spans 258-54=204px to 258+54=312px
+          - Covered by portrait: 204–266px ✓ (text is behind image)
+          - Visible below fade (266–287px): only 46px partially fading
+      */}
       <div className="pointer-events-none absolute inset-x-0 z-[1] -translate-y-1/2
-        top-[49.5%]
-        max-sm:top-[47%]">
+        sm:top-[49.5%]
+        max-sm:top-[43%]">
         <div className="[transform:scaleY(1.31)]">
           <h1
             className={`${anton.className} hero-title whitespace-nowrap bg-[linear-gradient(180deg,#f58b3f_0%,#ee6a2c_50%,#d6431f_100%)] bg-clip-text text-center leading-[0.86] text-transparent drop-shadow-[0_0_40px_rgba(255,100,20,0.22)]
-              text-[15vw] max-sm:text-[20vw]`}
+              sm:text-[15vw] max-sm:text-[21vw]`}
           >
             <span className="sr-only">Md Sihab Sharar — </span>
             BUILD DIFFERENT
@@ -107,51 +130,49 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Portrait (in front of the headline) ─────────────────── */}
+      {/* ── Portrait ─ z-10 = IN FRONT of headline (z-1) ──────────── */}
       <div className="absolute left-1/2 z-10 aspect-[1195/896] -translate-x-1/2
-        top-[12%] w-[55%]
-        max-sm:top-[10%] max-sm:w-[78%]">
-        <div className="hero-portrait relative h-full w-full">
+        sm:top-[12%] sm:w-[55%]
+        max-sm:top-[5%] max-sm:w-[88%]">
+        <div className="hero-portrait-wrap relative h-full w-full">
           <Image
             src="/images/profile/hero-reference.png"
             alt="Picture of Md Sihab Sharar"
             fill
             priority
-            sizes="(max-width: 640px) 90vw, 55vw"
-            className="object-contain"
-            style={{ maskImage: portraitMask, WebkitMaskImage: portraitMask }}
+            sizes="(max-width: 639px) 88vw, 55vw"
+            className="hero-portrait-img"
           />
         </div>
       </div>
 
-      {/* ── Buttons ─────────────────────────────────────────────── */}
+      {/* ── Buttons ─────────────────────────────────────────────────── */}
       <div className="absolute inset-x-0 z-20 flex items-center justify-center
-        top-[80%] gap-[1.8vw] sm:gap-[1.6vw]
-        max-sm:top-[79%] max-sm:gap-4">
+        sm:top-[80%] sm:gap-[1.8vw]
+        max-sm:top-[77%] max-sm:gap-3">
         <Link
           href="/projects"
           className="hero-cta1 inline-flex items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,#ff8f45_0%,#f0601f_100%)] font-semibold text-[#24100a] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff7a2e]
-            h-[clamp(36px,4.9vw,56px)] px-[clamp(0.9rem,2.2vw,1.75rem)] text-[clamp(0.75rem,3vw,1.15rem)]
+            sm:h-[clamp(44px,4.9vw,56px)] sm:px-[clamp(1.25rem,2.2vw,1.75rem)] sm:text-[clamp(0.9rem,1.7vw,1.15rem)]
             max-sm:h-11 max-sm:px-5 max-sm:text-sm"
         >
           Explore Projects
         </Link>
-
         <a
           href={siteConfig.resumeUrl}
           download="Shihab_Sharar_CV.pdf"
           className="hero-cta2 inline-flex items-center justify-center rounded-[10px] border border-[#ffb27a]/35 bg-[#0d0a08] font-semibold text-white transition hover:border-[#ffb27a]/70 hover:bg-[#1a120d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb27a]
-            h-[clamp(36px,4.9vw,56px)] px-[clamp(0.9rem,2.2vw,1.75rem)] text-[clamp(0.75rem,3vw,1.15rem)]
+            sm:h-[clamp(44px,4.9vw,56px)] sm:px-[clamp(1.25rem,2.2vw,1.75rem)] sm:text-[clamp(0.9rem,1.7vw,1.15rem)]
             max-sm:h-11 max-sm:px-5 max-sm:text-sm"
         >
           Download CV
         </a>
       </div>
 
-      {/* ── Profiles row ────────────────────────────────────────── */}
+      {/* ── Profiles ─────────────────────────────────────────────────── */}
       <div className="absolute inset-x-0 z-20 flex flex-wrap items-center justify-center gap-x-[0.5em] px-4 font-medium
-        top-[92.2%] text-[clamp(0.7rem,1.45vw,1rem)]
-        max-sm:top-[91%] max-sm:text-xs">
+        sm:top-[92.2%] sm:text-[clamp(0.7rem,1.45vw,1rem)]
+        max-sm:top-[90%] max-sm:text-[2.7vw]">
         <span
           className="hero-prof mr-[0.2em] font-bold tracking-[0.02em] text-[#d9773a]"
           style={{ "--i": 0 } as CSSProperties}
@@ -165,9 +186,7 @@ export function Hero() {
               style={{ "--i": i + 1 } as CSSProperties}
             >
               {i > 0 && (
-                <span aria-hidden="true" className="text-white/50">
-                  ·
-                </span>
+                <span aria-hidden="true" className="text-white/50">·</span>
               )}
               <a
                 href={p.href}
