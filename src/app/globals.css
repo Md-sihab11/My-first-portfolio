@@ -3,59 +3,31 @@
 @tailwind utilities;
 
 :root {
-  /* Light theme tokens, harmonized with the blue accent family */
-  --background: 247 249 252;
-  --surface: 255 255 255;
-  --surface-muted: 241 244 249;
-  --surface-elevated: 255 255 255;
+  /* Dark theme tokens matching Hero section — deep brown-black with orange/amber accents */
+  --background: 4 3 2;
+  --surface: 18 14 10;
+  --surface-muted: 13 10 7;
+  --surface-elevated: 29 22 16;
 
-  --text-primary: 17 24 33;
-  --text-muted: 51 62 79;
+  --text-primary: 255 248 240;
+  --text-muted: 217 173 138;
 
-  --text-secondary: 85 97 116;
-  --text-secondary-muted: 122 134 152;
+  --text-secondary: 210 155 110;
+  --text-secondary-muted: 168 125 85;
 
-  --accent: 37 99 201;
-  --accent-hover: 30 82 168;
-  --accent-solid: 37 99 201;
-  --accent-solid-hover: 30 82 168;
-  --accent-subtle: 226 238 255;
-  --accent-text: 255 255 255;
+  --accent: 255 122 46;
+  --accent-hover: 255 143 69;
+  --accent-solid: 240 96 31;
+  --accent-solid-hover: 255 122 46;
+  --accent-subtle: 45 25 10;
+  --accent-text: 36 16 10;
 
-  --border: 224 230 239;
-  --border-subtle: 237 241 247;
-  --border-highlight: 190 201 217;
-
-  --destructive: 190 45 55;
-  --destructive-foreground: 255 255 255;
-}
-
-.dark {
-  /* Premium dark navy-black theme tokens */
-  --background: 9 14 23;
-  --surface: 17 25 39;
-  --surface-muted: 14 22 36;
-  --surface-elevated: 29 40 56;
-
-  --text-primary: 242 245 250;
-  --text-muted: 185 194 208;
-
-  --text-secondary: 139 150 168;
-  --text-secondary-muted: 117 133 156;
-
-  --accent: 142 197 255;
-  --accent-hover: 167 214 255;
-  --accent-solid: 120 181 245;
-  --accent-solid-hover: 142 197 255;
-  --accent-subtle: 20 39 60;
-  --accent-text: 9 14 23;
-
-  --border: 52 64 84;
-  --border-subtle: 37 50 70;
-  --border-highlight: 70 86 111;
+  --border: 75 50 30;
+  --border-subtle: 55 38 20;
+  --border-highlight: 120 78 45;
 
   --destructive: 245 118 128;
-  --destructive-foreground: 9 14 23;
+  --destructive-foreground: 4 3 2;
 }
 
 html {
