@@ -5,7 +5,7 @@ import { studyAbroadLastReviewed } from "@/data/study-abroad";
 import { StudyAbroadHub } from "@/components/study-abroad/StudyAbroadHub";
 import { Notice } from "@/components/study-abroad/ui";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { formatDate } from "@/lib/utils";
 import { readStudyAbroadDataSafe } from "@/lib/study-abroad/store";
 

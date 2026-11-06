@@ -23,7 +23,7 @@ import type { City, Country, University } from "@/lib/study-abroad/types";
 import { ApiError, requestJson } from "@/lib/study-abroad/client";
 import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
   EditAccessProvider,

@@ -25,7 +25,7 @@ import {
 import { ApiError, requestJson } from "@/lib/study-abroad/client";
 import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {

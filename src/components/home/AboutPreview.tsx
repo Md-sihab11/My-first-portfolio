@@ -11,7 +11,7 @@ import {
   Terminal,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { milestonesData } from "@/data/milestones";
 

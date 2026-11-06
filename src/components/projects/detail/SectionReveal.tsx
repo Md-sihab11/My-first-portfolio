@@ -9,9 +9,15 @@ interface SectionRevealProps {
   delay?: number;
 }
 
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
 /**
  * Small, dependency-free entrance animation.
- * Content is revealed once when it first approaches the viewport.
+ *
+ * The server renders content visible by default, so the page still works
+ * without JavaScript. On the client, off-screen sections are hidden in a
+ * layout effect (before paint) and revealed once they approach the viewport.
  */
 export function SectionReveal({
   children,
@@ -19,9 +25,9 @@ export function SectionReveal({
   delay = 0,
 }: SectionRevealProps) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
 
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const node = ref.current;
     if (!node) return;
 
@@ -34,11 +40,13 @@ export function SectionReveal({
       return;
     }
 
-    // Anything already on screen should not wait for the observer.
+    // Anything already on screen should stay visible.
     if (node.getBoundingClientRect().top < window.innerHeight * 0.92) {
       setVisible(true);
       return;
     }
+
+    setVisible(false);
 
     const observer = new IntersectionObserver(
       ([entry]) => {

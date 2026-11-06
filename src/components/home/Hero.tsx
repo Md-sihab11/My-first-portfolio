@@ -5,7 +5,7 @@ import { ArrowRight, Download } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getVerifiedSocialLinks } from "@/data/social-links";
 import { SocialCard } from "@/components/social/SocialCard";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { techIconsData } from "@/data/tech-icons";

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({

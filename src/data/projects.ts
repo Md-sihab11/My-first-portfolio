@@ -205,7 +205,7 @@ export const projects: Project[] = [
     problem:
       "Daily market price volatility and lack of accessible price tracking in local bazaars make it challenging for ordinary citizens to anticipate fair prices and prevent overpaying.",
     solution:
-      "Constructed a responsive full-stack platform featuring an animated price ticker, Bengali calendar date integration, detailed product price analytics, and protected user dashboards.",
+      "Constructed a responsive full-stack platform featuring an animated price ticker, Bengali calendar date integration, detailed product price analytics, and protected product detail and profile routes.",
     image: "/images/projects/bazar-dor1.png",
     imageAlt: "Bazar Dor daily market commodity monitoring platform interface",
     technologies: [
@@ -313,7 +313,7 @@ export const projects: Project[] = [
     problem:
       "Developers lose hours navigating scattered documentation to assemble modern, compatible development stacks.",
     solution:
-      "Built a streamlined web explorer that categorizes developer tools with responsive filtering, category badges, and instant search.",
+      "Built a streamlined React interface where users can explore technologies by category, difficulty, rating, and description, then assemble and manage a personal stack without duplicates.",
     image: "/images/projects/devstack1.png",
     imageAlt: "DevStack developer tool catalog interface",
     technologies: [
@@ -331,9 +331,10 @@ export const projects: Project[] = [
     category: "Frontend",
     developmentStatus: "Live",
     highlights: [
-      "Dynamic search and multi-tag filtering across tech categories",
-      "Responsive cards with tool details, external links, and tag badges",
-      "Optimized client-side state management for snappy interactions",
+      "Browse technologies with icon, category, difficulty, rating, and description",
+      "Add technologies to a personal stack with duplicate prevention",
+      "Remove selected technologies individually or clear the whole stack",
+      "Responsive interface with toast feedback for add and remove actions",
     ],
     features: [
       {

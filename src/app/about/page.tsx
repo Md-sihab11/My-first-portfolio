@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Code, Compass, Heart, Sparkles, Terminal } from "
 import { siteConfig } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Skills } from "@/components/home/Skills";
 import { Education } from "@/components/home/Education";
 import { LearningTimeline } from "@/components/about/LearningTimeline";

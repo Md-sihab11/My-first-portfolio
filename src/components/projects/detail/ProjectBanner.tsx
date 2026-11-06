@@ -31,7 +31,7 @@ export function ProjectBanner({ src, alt }: ProjectBannerProps) {
           sizes="100vw"
           className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
         />
-        <span className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-5">
+        <span className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-black/60 to-transparent p-4 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100 sm:p-5">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/50 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur">
             <Expand className="h-3.5 w-3.5" />
             View full screenshot

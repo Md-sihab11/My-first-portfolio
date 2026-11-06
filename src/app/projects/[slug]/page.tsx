@@ -7,7 +7,7 @@ import { GithubIcon } from "@/components/ui/Icons";
 import { getAllProjects, getProjectBySlug } from "@/lib/projects";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { ProjectBanner } from "@/components/projects/detail/ProjectBanner";
 import { ProjectSection } from "@/components/projects/detail/ProjectSection";
 import { ProjectSnapshot } from "@/components/projects/detail/ProjectSnapshot";
@@ -342,7 +342,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="lg:col-span-4">
+          <div className="hidden lg:col-span-4 lg:block">
             <ProjectSidebar sections={sections} />
           </div>
         </div>
