@@ -1,101 +1,119 @@
-import React from "react";
 import Link from "next/link";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "accent";
-  size?: "sm" | "md" | "lg";
+const buttonVariants = cva(
+  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-transparent text-sm font-medium outline-none transition-all duration-200 select-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-accent-solid text-accent-text shadow-glow hover:bg-accent-solid-hover hover:shadow-glow-lg",
+        primary:
+          "bg-accent-solid text-accent-text shadow-glow hover:bg-accent-solid-hover hover:shadow-glow-lg",
+        accent:
+          "bg-accent-solid text-accent-text shadow-glow hover:bg-accent-solid-hover hover:shadow-glow-lg",
+        secondary:
+          "border-border bg-surface text-primary hover:border-secondary-muted hover:bg-surface-elevated",
+        outline:
+          "border-border bg-transparent text-primary hover:border-accent/60 hover:bg-surface",
+        ghost:
+          "text-secondary hover:bg-surface-muted hover:text-primary",
+        destructive:
+          "border-destructive/20 bg-destructive/10 text-destructive hover:bg-destructive/20",
+        link: "text-accent underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-3.5",
+        xs: "h-7 gap-1 rounded-md px-2 text-[11px]",
+        sm: "h-8 gap-1.5 rounded-md px-3 text-xs",
+        md: "h-10 px-4",
+        lg: "h-11 px-5",
+        icon: "h-9 w-9",
+        "icon-xs": "h-6 w-6 rounded-md",
+        "icon-sm": "h-7 w-7 rounded-md",
+        "icon-lg": "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends ButtonPrimitive.Props,
+    VariantProps<typeof buttonVariants> {
   href?: string;
   isExternal?: boolean;
   download?: string;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = "primary",
-      size = "md",
-      href,
-      isExternal,
-      download,
-      children,
-      disabled,
-      ...props
-    },
-    ref
-  ) => {
-    const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none select-none active:scale-[0.98]";
+function Button({
+  className,
+  variant = "primary",
+  size = "md",
+  href,
+  isExternal,
+  download,
+  children,
+  render,
+  ...props
+}: ButtonProps) {
+  const classes = cn(buttonVariants({ variant, size }), className);
 
-    const sizeStyles = {
-      sm: "text-xs px-3 py-1.5 rounded-md gap-1.5",
-      md: "text-sm px-4 py-2.5 rounded-lg gap-2",
-      lg: "text-base px-6 py-3.5 rounded-lg gap-2.5",
-    };
+  if (href) {
+    const external = isExternal || /^(https?:|mailto:|tel:)/.test(href);
 
-    const variantStyles = {
-      primary:
-        "bg-accent-solid text-accent-text hover:bg-accent-solid-hover font-semibold shadow-glow hover:shadow-glow-lg",
-      accent:
-        "bg-accent-solid text-accent-text hover:bg-accent-solid-hover font-semibold shadow-glow hover:shadow-glow-lg",
-      secondary:
-        "bg-surface hover:bg-surface-elevated text-primary border border-border hover:border-secondary-muted",
-      outline:
-        "bg-transparent border border-border text-primary hover:bg-surface hover:border-accent/60",
-      ghost:
-        "bg-transparent text-secondary hover:text-primary hover:bg-surface-muted",
-    };
-
-    const combinedStyles = cn(
-      baseStyles,
-      sizeStyles[size],
-      variantStyles[variant],
-      className
-    );
-
-    if (href) {
-      if (download) {
-        return (
-          <a
-            href={href}
-            download={download}
-            className={combinedStyles}
-          >
-            {children}
-          </a>
-        );
-      }
-      if (isExternal) {
-        return (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={combinedStyles}
-          >
-            {children}
-          </a>
-        );
-      }
+    if (external || download) {
       return (
-        <Link href={href} className={combinedStyles}>
+        <ButtonPrimitive
+          data-slot="button"
+          nativeButton={false}
+          render={
+            render ?? (
+              <a
+                href={href}
+                {...(external && !download
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                {...(download ? { download } : {})}
+              />
+            )
+          }
+          className={classes}
+          {...props}
+        >
           {children}
-        </Link>
+        </ButtonPrimitive>
       );
     }
 
     return (
-      <button
-        ref={ref}
-        disabled={disabled}
-        className={combinedStyles}
+      <ButtonPrimitive
+        data-slot="button"
+        nativeButton={false}
+        render={render ?? <Link href={href} />}
+        className={classes}
         {...props}
       >
         {children}
-      </button>
+      </ButtonPrimitive>
     );
   }
-);
 
-Button.displayName = "Button";
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      render={render}
+      className={classes}
+      {...props}
+    >
+      {children}
+    </ButtonPrimitive>
+  );
+}
+
+export { Button, buttonVariants };

@@ -25,6 +25,9 @@
   --border: 224 230 239;
   --border-subtle: 237 241 247;
   --border-highlight: 190 201 217;
+
+  --destructive: 190 45 55;
+  --destructive-foreground: 255 255 255;
 }
 
 .dark {
@@ -50,6 +53,9 @@
   --border: 52 64 84;
   --border-subtle: 37 50 70;
   --border-highlight: 70 86 111;
+
+  --destructive: 245 118 128;
+  --destructive-foreground: 9 14 23;
 }
 
 html {
@@ -104,7 +110,6 @@ body {
   }
 }
 
-
 @keyframes tech-float {
 
   0%,
@@ -120,3 +125,22 @@ body {
 .animate-tech-float {
   animation: tech-float 3s ease-in-out infinite;
 }
+
+/* Faint blueprint grid behind the tech-stack cards. */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, rgb(var(--border) / 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--border) / 0.16) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 72% 68% at 50% 42%,
+    black 18%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 72% 68% at 50% 42%,
+    black 18%,
+    transparent 78%
+  );
+}
+

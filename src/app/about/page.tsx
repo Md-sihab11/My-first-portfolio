@@ -5,9 +5,10 @@ import { ArrowRight, BookOpen, Code, Compass, Heart, Sparkles, Terminal } from "
 import { siteConfig } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Skills } from "@/components/home/Skills";
 import { Education } from "@/components/home/Education";
+import { LearningTimeline } from "@/components/about/LearningTimeline";
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -91,7 +92,7 @@ export default function AboutPage() {
 
             </div>
 
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary">
                 Core Development Principles
               </h3>
@@ -132,7 +133,7 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="space-y-4 pt-2">
               <h3 className="text-2xl font-bold text-primary">
@@ -156,6 +157,7 @@ export default function AboutPage() {
           </div>
         </div>
       </Container>
+      <LearningTimeline id="milestones" />
       <Education />
 
 

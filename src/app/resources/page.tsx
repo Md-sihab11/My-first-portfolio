@@ -5,7 +5,7 @@ import { getAllResources } from "@/lib/resources";
 import { ResourceGrid } from "@/components/resources/ResourceGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Resources & Notes",

@@ -1,16 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Geist } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -79,7 +76,8 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      data-scroll-behavior="smooth"
+      className={cn(jetbrainsMono.variable, "font-sans", geist.variable)}
     >
       <head>
         <script
@@ -88,7 +86,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-background text-primary font-sans antialiased flex flex-col selection:bg-accent selection:text-accent-text">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-background text-primary font-sans antialiased flex flex-col selection:bg-accent selection:text-accent-text"
+      >
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

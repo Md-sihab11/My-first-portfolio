@@ -4,7 +4,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getVerifiedSocialLinks } from "@/data/social-links";
 import { SocialCard } from "@/components/social/SocialCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/Container";
 
 export function ContactCTA() {

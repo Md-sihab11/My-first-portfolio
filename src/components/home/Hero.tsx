@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail, Sparkles, Terminal, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getVerifiedSocialLinks } from "@/data/social-links";
 import { SocialCard } from "@/components/social/SocialCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { techIconsData } from "@/data/tech-icons";
 
@@ -22,13 +23,16 @@ export function Hero() {
           {/* Main Content Column */}
           <div className="lg:col-span-8 space-y-8">
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-accent/25 bg-surface text-xs font-mono text-primary shadow-sm">
+            <Badge
+              variant="accent"
+              className="gap-2.5 rounded-full border-accent/25 bg-surface px-3.5 py-1.5 font-mono text-xs font-normal text-primary shadow-sm"
+            >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
               </span>
               <span className="text-secondary">{siteConfig.role}</span>
-            </div>
+            </Badge>
 
             {/* Editorial Headline */}
             <div className="space-y-4">
@@ -108,6 +112,7 @@ export function Hero() {
                               src={tech.iconUrl}
                               alt={tech.name}
                               fill
+                              sizes="48px"
                               className="object-contain"
                             />
                           </div>

@@ -18,19 +18,19 @@ export function MobileMenu() {
   const close = () => setIsOpen(false);
 
   return (
-    <div className="md:hidden">
+    <div className="xl:hidden">
       <button
         onClick={toggle}
         aria-label={
           isOpen ? "Close navigation menu" : "Open navigation menu"
         }
         aria-expanded={isOpen}
-        className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg border border-border bg-surface text-secondary hover:text-accent hover:border-accent/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        className="flex min-h-[40px] min-w-[40px] h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-secondary transition-colors hover:border-accent/40 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         {isOpen ? (
-          <X className="w-5 h-5 text-accent" />
+          <X className="h-4 w-4 text-accent" />
         ) : (
-          <Menu className="w-5 h-5" />
+          <Menu className="h-4 w-4" />
         )}
       </button>
 

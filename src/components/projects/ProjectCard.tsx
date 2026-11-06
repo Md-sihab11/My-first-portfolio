@@ -6,7 +6,7 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { Project } from "@/types/project";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 interface ProjectCardProps {
   project: Project;

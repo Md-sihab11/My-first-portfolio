@@ -1,8 +1,20 @@
+"use client";
+
 import React from "react";
-import { GraduationCap, Calendar, Building2, Award, BookOpen, Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Building2,
+  Calendar,
+  CheckCircle2,
+  ChevronDown,
+  GraduationCap,
+  Sparkles,
+} from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
+import { cn } from "@/lib/utils";
 
 interface EducationProps {
   id?: string;
@@ -27,11 +39,23 @@ const courseworkMap: Record<string, string[]> = {
   ],
 };
 
-export function Education({ id = "education", className = "", showHeader = true }: EducationProps) {
+export function Education({
+  id = "education",
+  className = "",
+  showHeader = true,
+}: EducationProps) {
   const educationList = siteConfig.education || [];
+  const [collapsed, setCollapsed] = React.useState<Record<string, boolean>>({});
+
+  const toggleCoursework = (key: string) => {
+    setCollapsed((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
-    <section id={id} className={`py-20 border-t border-border/60 ${className}`}>
+    <section
+      id={id}
+      className={cn("scroll-mt-20 border-t border-border/60 py-20", className)}
+    >
       <Container size="lg">
         {showHeader && (
           <SectionHeading
@@ -41,112 +65,170 @@ export function Education({ id = "education", className = "", showHeader = true 
           />
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {educationList.map((item, index) => {
-            const isOngoing = item.period.toLowerCase().includes("present");
-            const coursework = courseworkMap[item.id] || [];
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-2 left-4 top-2 w-px bg-gradient-to-b from-border/0 via-border/80 to-border/0 lg:left-1/2 lg:-translate-x-1/2"
+          />
 
-            return (
-              <div
-                key={item.id || index}
-                className="relative group p-6 sm:p-8 rounded-2xl border border-border bg-surface hover:border-accent/50 transition-all duration-300 shadow-glow flex flex-col justify-between overflow-hidden"
-              >
-                {/* Subtle decorative gradient flare */}
-                <div className="absolute top-0 right-0 -mr-12 -mt-12 w-36 h-36 rounded-full bg-accent/5 blur-2xl group-hover:bg-accent/15 transition-all duration-500 pointer-events-none" />
+          <div className="space-y-10 lg:space-y-12">
+            {educationList.map((item, index) => {
+              const key = item.id || String(index);
+              const isRight = index % 2 === 0;
+              const isOngoing = item.period.toLowerCase().includes("present");
+              const coursework = courseworkMap[item.id] || [];
+              const isOpen = !collapsed[key];
+              const panelId = `education-coursework-${key}`;
 
-                <div className="space-y-6">
-                  {/* Top Row: Degree Icon & Status Badge */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="p-3 rounded-xl bg-surface-elevated border border-border shadow-sm text-accent group-hover:scale-105 transition-transform duration-300">
-                      <GraduationCap className="w-6 h-6" />
-                    </div>
+              return (
+                <div key={key} className="relative lg:grid lg:grid-cols-2">
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-4 top-1 z-10 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-background bg-accent shadow-[0_0_0_4px_rgb(var(--accent)/0.12)] lg:left-1/2 lg:top-7"
+                  />
 
-                    <div className="flex flex-wrap items-center gap-2 justify-end">
-                      {isOngoing ? (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-accent-subtle text-accent border border-accent/30 shadow-sm">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                          Currently Enrolled
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-surface-muted text-secondary border border-border">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                          Graduated
-                        </span>
-                      )}
-
-                      {item.gpa && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-surface-elevated text-primary border border-border shadow-sm">
-                          <Award className="w-3 h-3 text-accent" />
-                          {item.gpa}
-                        </span>
-                      )}
-                    </div>
+                  <div className="mb-3 pl-10 lg:hidden">
+                    <span className="inline-flex items-center gap-2 font-mono text-xs font-medium tracking-wide text-accent">
+                      <Calendar className="h-3.5 w-3.5" />
+                      {item.period}
+                    </span>
                   </div>
 
-                  {/* Degree Title & Institution */}
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-primary group-hover:text-accent transition-colors">
-                      {item.degree}
-                    </h3>
-
-                    <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-secondary-muted font-medium mt-2">
-                      <div className="flex items-center gap-1.5 text-primary">
-                        <Building2 className="w-4 h-4 text-accent/80 shrink-0" />
-                        <span>{item.institution}</span>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 text-secondary-muted font-mono">
-                        <Calendar className="w-3.5 h-3.5 text-accent/70 shrink-0" />
-                        <span>{item.period}</span>
-                      </div>
-
-                      {item.board && (
-                        <div className="flex items-center gap-1.5 text-secondary-muted font-mono">
-                          <BookOpen className="w-3.5 h-3.5 text-accent/70 shrink-0" />
-                          <span>{item.board}</span>
-                        </div>
-                      )}
-                    </div>
+                  <div
+                    className={cn(
+                      "hidden lg:row-start-1 lg:flex",
+                      isRight
+                        ? "lg:col-start-1 lg:justify-end lg:pr-14"
+                        : "lg:col-start-2 lg:justify-start lg:pl-14"
+                    )}
+                  >
+                    <span className="pt-5 font-mono text-sm font-medium tracking-wide text-accent">
+                      {item.period}
+                    </span>
                   </div>
 
-                  {/* Narrative description */}
-                  {item.description && (
-                    <p className="text-xs sm:text-sm text-secondary leading-relaxed pt-1">
-                      {item.description}
-                    </p>
-                  )}
+                  <div
+                    className={cn(
+                      "pl-10 lg:pl-0",
+                      isRight
+                        ? "lg:col-start-2 lg:row-start-1 lg:pl-14"
+                        : "lg:col-start-1 lg:row-start-1 lg:pr-14"
+                    )}
+                  >
+                    <article className="group relative overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-glow transition-colors hover:border-accent/40">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent/5 blur-3xl transition-colors duration-500 group-hover:bg-accent/10"
+                      />
 
-                  {/* Relevant Coursework / Focus Modules */}
-                  {coursework.length > 0 && (
-                    <div className="space-y-2 pt-2">
-                      <div className="text-[11px] font-mono uppercase tracking-wider text-secondary-muted flex items-center gap-1.5">
-                        <Sparkles className="w-3 h-3 text-accent" />
-                        <span>Key Coursework & Competencies</span>
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {coursework.map((course) => (
-                          <span
-                            key={course}
-                            className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-surface-muted/90 border border-border/80 text-secondary group-hover:border-accent/30 group-hover:text-primary transition-colors"
-                          >
-                            {course}
+                      <div className="relative p-5 sm:p-6">
+                        <div className="flex items-start gap-3.5">
+                          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-accent/25 bg-accent-subtle/40 text-accent shadow-sm">
+                            <GraduationCap className="h-5 w-5" />
                           </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
 
-                {/* Footer Meta: Department / Group */}
-                {item.group && (
-                  <div className="mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-secondary-muted font-mono">
-                    <span>Major / Concentration:</span>
-                    <span className="text-accent font-semibold">{item.group}</span>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-lg font-bold leading-snug tracking-tight text-primary transition-colors group-hover:text-accent sm:text-xl">
+                              {item.degree}
+                            </h3>
+
+                            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-sm">
+                              <span className="inline-flex items-center gap-1.5 font-medium text-accent">
+                                <Building2 className="h-3.5 w-3.5 shrink-0" />
+                                {item.institution}
+                              </span>
+
+                              {item.board && (
+                                <span className="inline-flex items-center gap-1.5 text-secondary-muted">
+                                  <BookOpen className="h-3.5 w-3.5 shrink-0 text-accent/70" />
+                                  {item.board}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          {isOngoing ? (
+                            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-subtle px-2.5 py-1 font-mono text-[10px] font-semibold text-accent">
+                              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                              Currently Enrolled
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-muted px-2.5 py-1 font-mono text-[10px] font-medium text-secondary">
+                              <CheckCircle2 className="h-3 w-3 text-accent" />
+                              Graduated
+                            </span>
+                          )}
+
+                          {item.gpa && (
+                            <span className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated px-2.5 py-1 font-mono text-[10px] font-semibold text-primary">
+                              <Award className="h-3 w-3 text-accent" />
+                              {item.gpa}
+                            </span>
+                          )}
+                        </div>
+
+                        {item.description && (
+                          <p className="mt-4 text-sm leading-relaxed text-secondary">
+                            {item.description}
+                          </p>
+                        )}
+
+                        {coursework.length > 0 && (
+                          <div className="mt-5 border-t border-border/60 pt-4">
+                            <button
+                              type="button"
+                              onClick={() => toggleCoursework(key)}
+                              aria-expanded={isOpen}
+                              aria-controls={panelId}
+                              className="flex w-full items-center justify-between gap-3 rounded-md text-left font-mono text-[11px] uppercase tracking-wider text-secondary-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <Sparkles className="h-3 w-3 text-accent" />
+                                Key Coursework & Competencies
+                              </span>
+                              <ChevronDown
+                                className={cn(
+                                  "h-4 w-4 shrink-0 text-accent transition-transform duration-200",
+                                  isOpen && "rotate-180"
+                                )}
+                              />
+                            </button>
+
+                            {isOpen && (
+                              <div
+                                id={panelId}
+                                className="mt-3 flex flex-wrap gap-1.5"
+                              >
+                                {coursework.map((course) => (
+                                  <span
+                                    key={course}
+                                    className="rounded-md border border-accent/20 bg-accent-subtle/30 px-2.5 py-1 text-[11px] font-medium text-accent"
+                                  >
+                                    {course}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {item.group && (
+                          <div className="mt-4 flex items-center justify-between gap-3 border-t border-border/60 pt-3 font-mono text-[11px] text-secondary-muted">
+                            <span>Major / Concentration:</span>
+                            <span className="font-semibold text-accent">
+                              {item.group}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </article>
                   </div>
-                )}
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Container>
     </section>

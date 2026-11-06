@@ -15,8 +15,8 @@ export default function HomePage() {
     <div className="flex flex-col">
       <Hero />
       <AboutPreview />
-      <Education />
       <Skills />
+      <Education />
       <FeaturedProjects />
       <LatestPosts posts={posts} />
       <ContactCTA />
