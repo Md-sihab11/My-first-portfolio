@@ -44,7 +44,7 @@ export const siteConfig = {
   email: "mdsihabsharar22@gmail.com",
   phone: "+8801332416702",
   whatsapp: "+8801332416702",
-  resumeUrl: "/files/resume.pdf",
+  resumeUrl: "/files/Shihab_CV.pdf",
   links: {
     github: "https://github.com/Md-sihab11",
     linkedin: "https://linkedin.com/in/md-sihab11",
